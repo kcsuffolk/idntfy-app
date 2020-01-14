@@ -6,6 +6,8 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
+// Data from Database
+
 List<LatestTransactions> lastTransaction = [
   LatestTransactions(
       provider: 'Facemag',
@@ -26,8 +28,15 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text('Latest Transactions', style: TextStyle(color: Colors.black)),
+        title: Text(
+          'Latest Transactions',
+          style: TextStyle(
+            color: Colors.black,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
+        ),
         elevation: 0,
         backgroundColor: Colors.white,
         brightness: Brightness.light,
@@ -35,19 +44,19 @@ class _HomeState extends State<Home> {
       body: ListView.builder(
         itemCount: lastTransaction.length,
         itemBuilder: (context, index) {
-          return Padding(
+          return Container(
             padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 4.0),
-            child: Card(
-              child: ListTile(
-                onTap: () {},
-                title: Text(lastTransaction[index].provider),
-                subtitle: Text(lastTransaction[index].datapoints),
-                leading: CircleAvatar(
-                  backgroundImage:
-                      AssetImage('images/${lastTransaction[index].logo}'),
-                ),
+            // child: Card(
+            child: ListTile(
+              onTap: () {},
+              title: Text(lastTransaction[index].provider),
+              subtitle: Text(lastTransaction[index].datapoints),
+              leading: CircleAvatar(
+                backgroundImage:
+                    AssetImage('images/logos/${lastTransaction[index].logo}'),
               ),
             ),
+            // ),
           );
         },
       ),
