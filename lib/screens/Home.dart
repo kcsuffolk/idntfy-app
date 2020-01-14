@@ -26,11 +26,11 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Latest Transactions',
-          style: TextStyle(color: Colors.black),
-        ),
+        title:
+            Text('Latest Transactions', style: TextStyle(color: Colors.black)),
         elevation: 0,
+        backgroundColor: Colors.white,
+        brightness: Brightness.light,
       ),
       body: ListView.builder(
         itemCount: lastTransaction.length,

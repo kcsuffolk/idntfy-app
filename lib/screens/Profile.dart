@@ -13,7 +13,10 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        title: Text('Profile', style: TextStyle(color: Colors.black)),
+        elevation: 0,
+        backgroundColor: Colors.white,
+        brightness: Brightness.light,
       ),
       // body: ListView.builder(),
     );
