@@ -73,22 +73,22 @@ class _ProfileState extends State<Profile> {
                   ],
                 ),
               ),
-              Container(
-                  //   child: ListView.builder(
-                  //     // itemCount: 2,
-                  //     itemBuilder: (context, index) {
-                  //       return Container(
-                  //         padding: const EdgeInsets.symmetric(
-                  //             vertical: 1.0, horizontal: 4.0),
-                  //         child: ListTile(
-                  //           onTap: () {},
-                  //           title: Text('Placeholder'),
-                  //           subtitle: Text('Placeholder'),
-                  //         ),
-                  //       );
-                  //     },
-                  //   ),
-                  ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: 3,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 1.0, horizontal: 4.0),
+                      child: ListTile(
+                        onTap: () {},
+                        title: Text('Address'),
+                        subtitle: Text('Placeholder'),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
           Positioned(

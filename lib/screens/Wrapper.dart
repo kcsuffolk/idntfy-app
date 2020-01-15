@@ -21,6 +21,7 @@ class _WrapperState extends State<Wrapper> {
     return Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 20,
         currentIndex: _currentIndex,
         onTap: onTabTapped,
         items: <BottomNavigationBarItem>[

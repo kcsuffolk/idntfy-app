@@ -28,20 +28,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(
-      //     'Latest Transactions',
-      //     style: TextStyle(
-      //       color: Colors.black,
-      //       fontFamily: 'Poppins',
-      //       fontWeight: FontWeight.bold,
-      //       fontSize: 24,
-      //     ),
-      //   ),
-      //   elevation: 0,
-      //   backgroundColor: Colors.white,
-      //   brightness: Brightness.light,
-      // ),
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -78,7 +64,7 @@ class _HomeState extends State<Home> {
               ),
             ),
             Expanded(
-              child: ListView.builder(
+              child: ListView.separated(
                 itemCount: lastTransaction.length,
                 itemBuilder: (context, index) {
                   return Container(
@@ -92,11 +78,15 @@ class _HomeState extends State<Home> {
                       leading: CircleAvatar(
                         backgroundImage: AssetImage(
                             'images/logos/${lastTransaction[index].logo}'),
+                        radius: 22.5,
                       ),
                     ),
                     // ),
                   );
                 },
+                separatorBuilder: (BuildContext context, index) => Divider(
+                  thickness: 1,
+                ),
               ),
             ),
           ],
