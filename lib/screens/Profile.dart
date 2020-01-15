@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:idntfy_app/widgets/UserInformation.dart';
 
 class Profile extends StatefulWidget {
   @override
   _ProfileState createState() => _ProfileState();
 }
+
+// Data from Database
+
+List<UserInformation> userInformation = [
+  UserInformation(
+      address: 'Faustoff 12, Berlin',
+      emailAddress: 'simons-a@hannons.com',
+      phoneNumber: '+32 74 776 721'),
+];
 
 class _ProfileState extends State<Profile> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
@@ -21,9 +31,9 @@ class _ProfileState extends State<Profile> {
             children: <Widget>[
               Container(
                 width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Color(0xffF3FCF5),
-                ),
+                // decoration: BoxDecoration(
+                //   color: Color(0xffF3FCF5),
+                // ),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 55.0),
                   child: Column(
@@ -74,19 +84,37 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
               Expanded(
-                child: ListView.builder(
-                  itemCount: 3,
+                child: ListView.separated(
+                  itemCount: userInformation.length,
                   itemBuilder: (context, index) {
                     return Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 1.0, horizontal: 4.0),
-                      child: ListTile(
-                        onTap: () {},
-                        title: Text('Address'),
-                        subtitle: Text('Placeholder'),
+                      child: Column(
+                        children: <Widget>[
+                          ListTile(
+                            onTap: () {},
+                            title: Text('Address'),
+                            subtitle: Text(userInformation[index].address),
+                            trailing: Text('12'),
+                          ),
+                          ListTile(
+                            onTap: () {},
+                            title: Text('E-Mail Address'),
+                            subtitle: Text(userInformation[index].emailAddress),
+                            trailing: Text('12'),
+                          ),
+                          ListTile(
+                            onTap: () {},
+                            title: Text('Phone Number'),
+                            subtitle: Text(userInformation[index].phoneNumber),
+                            trailing: Text('12'),
+                          ),
+                        ],
                       ),
                     );
                   },
+                  separatorBuilder: (BuildContext context, index) => Divider(
+                    thickness: 1,
+                  ),
                 ),
               ),
             ],
