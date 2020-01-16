@@ -35,7 +35,7 @@ class _WrapperState extends State<Wrapper> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
-            title: Text('Profile'),
+            title: Text('Settings'),
           ),
         ],
       ),

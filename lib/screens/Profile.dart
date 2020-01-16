@@ -1,39 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/widgets/UserInformation.dart';
+import 'package:idntfy_app/widgets/AccountSettings.dart';
 
 class Profile extends StatefulWidget {
   @override
   _ProfileState createState() => _ProfileState();
 }
 
-// Data from Database
-
-List<UserInformation> userInformation = [
-  UserInformation(
-      address: 'Faustoff 12, Berlin',
-      emailAddress: 'simons-a@hannons.com',
-      phoneNumber: '+32 74 776 721'),
+List<AccountSettings> accountSettings = [
+  AccountSettings(title: 'Account'),
+  AccountSettings(title: 'E-mail'),
+  AccountSettings(title: 'Notifications'),
 ];
 
 class _ProfileState extends State<Profile> {
-  var scaffoldKey = GlobalKey<ScaffoldState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
-      endDrawer: Drawer(
-        child: ListView(),
-      ),
       body: Stack(
         children: <Widget>[
           Column(
             children: <Widget>[
               Container(
                 width: double.infinity,
-                // decoration: BoxDecoration(
-                //   color: Color(0xffF3FCF5),
-                // ),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 55.0),
                   child: Column(
@@ -52,64 +40,37 @@ class _ProfileState extends State<Profile> {
                               fontSize: 19.0),
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 5.0),
-                        margin: EdgeInsets.only(bottom: 30.0),
-                        decoration: BoxDecoration(
-                          color: Color(0xff43D098), // Todo: Change Color
-                          borderRadius: BorderRadius.circular(22.0),
-                        ),
-                        child: Text(
-                          'Verified',
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            color: Colors.white,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            Icons.verified_user,
+                            color: Color(0xff43D098),
                           ),
-                        ),
+                          SizedBox(width: 10.0),
+                          Text(
+                            'Verified',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
               ),
-              Container(
-                margin: EdgeInsets.only(top: 25.0),
-                padding: EdgeInsets.symmetric(horizontal: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text('User Information'),
-                    Text('Sharing'),
-                  ],
-                ),
-              ),
               Expanded(
                 child: ListView.separated(
-                  itemCount: userInformation.length,
+                  itemCount: accountSettings.length,
                   itemBuilder: (context, index) {
-                    return Container(
-                      child: Column(
-                        children: <Widget>[
-                          ListTile(
-                            onTap: () {},
-                            title: Text('Address'),
-                            subtitle: Text(userInformation[index].address),
-                            trailing: Text('12'),
-                          ),
-                          ListTile(
-                            onTap: () {},
-                            title: Text('E-Mail Address'),
-                            subtitle: Text(userInformation[index].emailAddress),
-                            trailing: Text('12'),
-                          ),
-                          ListTile(
-                            onTap: () {},
-                            title: Text('Phone Number'),
-                            subtitle: Text(userInformation[index].phoneNumber),
-                            trailing: Text('12'),
-                          ),
-                        ],
-                      ),
+                    return ListTile(
+                      onTap: () {
+                        Navigator.pushNamed(context,
+                            './${accountSettings[index].title.toLowerCase()}');
+                      },
+                      title: Text(accountSettings[index].title),
                     );
                   },
                   separatorBuilder: (BuildContext context, index) => Divider(
@@ -118,15 +79,6 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
             ],
-          ),
-          Positioned(
-            right: 20,
-            top: 55,
-            child: IconButton(
-              icon: Icon(Icons.menu),
-              color: Colors.black,
-              onPressed: () => scaffoldKey.currentState.openEndDrawer(),
-            ),
           ),
         ],
       ),

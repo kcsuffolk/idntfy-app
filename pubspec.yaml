@@ -67,6 +67,12 @@ flutter:
     - family: CustomIcons
       fonts:
         - asset: fonts/CustomIcons.ttf
+    - family: Inter
+      fonts:
+        - asset: fonts/Inter-Bold.otf
+          weight: 700
+        - asset: fonts/Inter-Medium.otf
+          weight: 500
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
