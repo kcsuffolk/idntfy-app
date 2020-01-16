@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/widgets/LastTransaction.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:idntfy_app/presentation/custom_icons_icons.dart';
 
 class Home extends StatefulWidget {
@@ -7,22 +7,20 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-// Data from Database
-
-List<LastTransaction> lastTransaction = [
-  LastTransaction(
-      provider: 'Facemag',
-      datapoints: '9 datapoints shared',
-      logo: 'facemag.png'),
-  LastTransaction(
-      provider: 'Musify',
-      datapoints: '2 datapoints shared',
-      logo: 'musify.png'),
-  LastTransaction(
-      provider: 'Twiffer',
-      datapoints: '4 datapoints shared',
-      logo: 'twiffer.png'),
-];
+Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
+  return Container(
+    padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 4.0),
+    child: ListTile(
+      onTap: () {},
+      title: Text(document['name']),
+      subtitle: Text(document['datapoints'].toString() + ' datapoints shared'),
+      // leading: CircleAvatar(
+      //   backgroundImage: AssetImage(
+      //       'images/logos/${lastTransaction[index].logo}'),
+      //   radius: 22.5,
+    ),
+  );
+}
 
 class _HomeState extends State<Home> {
   @override
@@ -63,30 +61,18 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            Expanded(
-              child: ListView.separated(
-                itemCount: lastTransaction.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 1.0, horizontal: 4.0),
-                    child: ListTile(
-                      onTap: () {},
-                      title: Text(lastTransaction[index].provider),
-                      subtitle: Text(lastTransaction[index].datapoints),
-                      leading: CircleAvatar(
-                        backgroundImage: AssetImage(
-                            'images/logos/${lastTransaction[index].logo}'),
-                        radius: 22.5,
-                      ),
+            StreamBuilder(
+                stream: Firestore.instance.collection('providers').snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) return const Text('Loading...');
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: snapshot.data.documents.length,
+                      itemBuilder: (context, index) => _buildListItem(
+                          context, snapshot.data.documents[index]),
                     ),
                   );
-                },
-                separatorBuilder: (BuildContext context, index) => Divider(
-                  thickness: 1,
-                ),
-              ),
-            ),
+                }),
           ],
         ),
       ),
