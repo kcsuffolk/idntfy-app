@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/screens/Home.dart';
-import 'package:idntfy_app/screens/Profile.dart';
-import 'package:idntfy_app/screens/Scan.dart';
-import 'package:idntfy_app/screens/Wrapper.dart';
-import 'package:idntfy_app/screens/Account.dart';
+import 'package:idntfy_app/screens/home.dart';
+import 'package:idntfy_app/screens/profile.dart';
+import 'package:idntfy_app/screens/scan.dart';
+import 'package:idntfy_app/screens/account.dart';
+import 'package:idntfy_app/widgets/bottomNavigation.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: './',
       routes: {
-        '/': (context) => Wrapper(),
+        '/': (context) => BottomNavigation(),
         './home': (context) => Home(),
         './scan': (context) => QRScanner(),
         './profile': (context) => Profile(),

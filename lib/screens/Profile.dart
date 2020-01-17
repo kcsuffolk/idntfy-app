@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/widgets/AccountSettings.dart';
+import 'package:idntfy_app/widgets/profileList.dart';
 
 class Profile extends StatefulWidget {
   @override
   _ProfileState createState() => _ProfileState();
 }
 
-List<AccountSettings> accountSettings = [
-  AccountSettings(title: 'Account'),
-  AccountSettings(title: 'E-mail'),
-  AccountSettings(title: 'Notifications'),
+List<SettingItem> settingItems = [
+  SettingItem(title: 'Account'),
+  SettingItem(title: 'E-mail'),
+  SettingItem(title: 'Notifications'),
 ];
 
 class _ProfileState extends State<Profile> {
@@ -63,14 +63,15 @@ class _ProfileState extends State<Profile> {
               ),
               Expanded(
                 child: ListView.separated(
-                  itemCount: accountSettings.length,
+                  itemCount: settingItems.length,
                   itemBuilder: (context, index) {
+                    // final item = accountSettings[index];
                     return ListTile(
                       onTap: () {
                         Navigator.pushNamed(context,
-                            './${accountSettings[index].title.toLowerCase()}');
+                            './${settingItems[index].title.toLowerCase()}');
                       },
-                      title: Text(accountSettings[index].title),
+                      title: Text(settingItems[index].title),
                     );
                   },
                   separatorBuilder: (BuildContext context, index) => Divider(

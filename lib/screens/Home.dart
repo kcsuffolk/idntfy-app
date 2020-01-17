@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:idntfy_app/presentation/custom_icons_icons.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -9,15 +8,16 @@ class Home extends StatefulWidget {
 
 Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
   return Container(
-    padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 4.0),
+    margin: EdgeInsets.only(top: 15.0),
+    padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 4.0),
     child: ListTile(
       onTap: () {},
       title: Text(document['name']),
       subtitle: Text(document['datapoints'].toString() + ' datapoints shared'),
-      // leading: CircleAvatar(
-      //   backgroundImage: AssetImage(
-      //       'images/logos/${lastTransaction[index].logo}'),
-      //   radius: 22.5,
+      leading: CircleAvatar(
+        backgroundImage: AssetImage('images/logos/${document['logo']}'),
+        radius: 22.5,
+      ),
     ),
   );
 }
@@ -28,32 +28,12 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                SizedBox(
-                  height: 50.0,
-                ),
-                IconButton(
-                  icon: Icon(CustomIcons.grid),
-                  iconSize: 18.0,
-                  onPressed: () {},
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 20.0),
-                  child: IconButton(
-                    icon: Icon(CustomIcons.search),
-                    iconSize: 18.0,
-                    onPressed: () {},
-                  ),
-                ),
-              ],
-            ),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 10.0),
+              padding: EdgeInsets.only(left: 15.0, top: 10.0),
               child: Text(
-                'Latest Transactions',
+                'Last Transactions',
                 style: TextStyle(
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.bold,
@@ -67,12 +47,89 @@ class _HomeState extends State<Home> {
                   if (!snapshot.hasData) return const Text('Loading...');
                   return Expanded(
                     child: ListView.builder(
-                      itemCount: snapshot.data.documents.length,
-                      itemBuilder: (context, index) => _buildListItem(
-                          context, snapshot.data.documents[index]),
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: 3,
+                      itemBuilder: (BuildContext context, index) =>
+                          _buildListItem(
+                              context, snapshot.data.documents[index]),
                     ),
                   );
                 }),
+            SizedBox(height: 100.0),
+            Expanded(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      SizedBox.fromSize(
+                        size: Size(75, 75), // button width and height
+                        child: ClipOval(
+                          child: Material(
+                            color: Color(0xff43D098), // button color
+                            child: InkWell(
+                              splashColor: Color(0xff0F5757), // splash color
+                              onTap: () {}, // button pressed
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.important_devices,
+                                    size: 35.0,
+                                    color: Colors.white,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      Text(
+                        "Providers",
+                        style: TextStyle(fontFamily: 'Inter'),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      SizedBox.fromSize(
+                        size: Size(75, 75), // button width and height
+                        child: ClipOval(
+                          child: Material(
+                            color: Color(0xff43D098), // button color
+                            child: InkWell(
+                              splashColor: Color(0xff0F5757), // splash color
+                              onTap: () {}, // button pressed
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.history,
+                                    size: 35.0,
+                                    color: Colors.white,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      Text(
+                        "History",
+                        style: TextStyle(fontFamily: 'Inter'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

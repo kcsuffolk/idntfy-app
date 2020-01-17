@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/screens/Home.dart';
-import 'package:idntfy_app/screens/Profile.dart';
-import 'package:idntfy_app/screens/Scan.dart';
+import 'package:idntfy_app/screens/home.dart';
+import 'package:idntfy_app/screens/profile.dart';
+import 'package:idntfy_app/screens/scan.dart';
 
-class Wrapper extends StatefulWidget {
+class BottomNavigation extends StatefulWidget {
   @override
-  _WrapperState createState() => _WrapperState();
+  _BottomNavigationState createState() => _BottomNavigationState();
 }
 
-class _WrapperState extends State<Wrapper> {
+class _BottomNavigationState extends State<BottomNavigation> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     Home(),
@@ -21,6 +21,7 @@ class _WrapperState extends State<Wrapper> {
     return Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Color(0xff43D098),
         elevation: 20,
         currentIndex: _currentIndex,
         onTap: onTabTapped,
@@ -35,7 +36,7 @@ class _WrapperState extends State<Wrapper> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
-            title: Text('Settings'),
+            title: Text('Profile'),
           ),
         ],
       ),
