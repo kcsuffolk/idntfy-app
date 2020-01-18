@@ -17,6 +17,8 @@ Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
       leading: CircleAvatar(
         backgroundImage: AssetImage('images/logos/${document['logo']}'),
         radius: 22.5,
+        // NetworkImage(
+        //     'https://www.google.com/s2/favicons?domain=www.${document['domain']}'),
       ),
     ),
   );
@@ -31,7 +33,7 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              padding: EdgeInsets.only(left: 15.0, top: 10.0),
+              padding: EdgeInsets.only(left: 20.0, top: 10.0),
               child: Text(
                 'Last Transactions',
                 style: TextStyle(
@@ -47,8 +49,8 @@ class _HomeState extends State<Home> {
                   if (!snapshot.hasData) return const Text('Loading...');
                   return Expanded(
                     child: ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: 3,
+                      itemCount: snapshot.data.documents.length,
+                      reverse: true,
                       itemBuilder: (BuildContext context, index) =>
                           _buildListItem(
                               context, snapshot.data.documents[index]),
@@ -64,7 +66,7 @@ class _HomeState extends State<Home> {
                   Column(
                     children: <Widget>[
                       SizedBox.fromSize(
-                        size: Size(75, 75), // button width and height
+                        size: Size(60, 60), // button width and height
                         child: ClipOval(
                           child: Material(
                             color: Color(0xff43D098), // button color
@@ -76,7 +78,7 @@ class _HomeState extends State<Home> {
                                 children: <Widget>[
                                   Icon(
                                     Icons.important_devices,
-                                    size: 35.0,
+                                    size: 30.0,
                                     color: Colors.white,
                                   ),
                                 ],
@@ -86,7 +88,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       SizedBox(
-                        height: 15.0,
+                        height: 10.0,
                       ),
                       Text(
                         "Providers",
@@ -97,7 +99,7 @@ class _HomeState extends State<Home> {
                   Column(
                     children: <Widget>[
                       SizedBox.fromSize(
-                        size: Size(75, 75), // button width and height
+                        size: Size(60, 60), // button width and height
                         child: ClipOval(
                           child: Material(
                             color: Color(0xff43D098), // button color
@@ -109,7 +111,7 @@ class _HomeState extends State<Home> {
                                 children: <Widget>[
                                   Icon(
                                     Icons.history,
-                                    size: 35.0,
+                                    size: 30.0,
                                     color: Colors.white,
                                   ),
                                 ],
@@ -119,7 +121,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       SizedBox(
-                        height: 15.0,
+                        height: 10.0,
                       ),
                       Text(
                         "History",

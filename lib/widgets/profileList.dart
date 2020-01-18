@@ -1,14 +1,17 @@
-// base class for the different types of items within the list
-abstract class ListItem {}
+class User {
+  String address;
+  String email;
+  String phoneNumber;
+  String creditCardNumber;
 
-class HeadingItem implements ListItem {
-  final String heading;
+  User({this.address, this.email, this.phoneNumber, this.creditCardNumber});
 
-  HeadingItem(this.heading);
-}
-
-class SettingItem {
-  String title;
-
-  SettingItem({this.title});
+  Map<String, dynamic> toMap() {
+    return {
+      'Address': this.address,
+      'Email Address': this.email,
+      'Phone Number': this.phoneNumber,
+      'Credit Card Details': this.creditCardNumber
+    };
+  }
 }

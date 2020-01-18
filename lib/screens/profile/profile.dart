@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:idntfy_app/widgets/profileList.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Profile extends StatefulWidget {
   @override
   _ProfileState createState() => _ProfileState();
 }
 
-List<SettingItem> settingItems = [
-  SettingItem(title: 'Account'),
-  SettingItem(title: 'E-mail'),
-  SettingItem(title: 'Notifications'),
-];
-
 class _ProfileState extends State<Profile> {
+  final user = User(
+          // user data provided by database
+          address: 'Blockchain Street 145',
+          email: 'kevin@gmail.com',
+          phoneNumber: '041 123 45 60',
+          creditCardNumber: '1234 5678 9162 2345')
+      .toMap();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,15 +66,16 @@ class _ProfileState extends State<Profile> {
               ),
               Expanded(
                 child: ListView.separated(
-                  itemCount: settingItems.length,
+                  itemCount: user.length,
                   itemBuilder: (context, index) {
-                    // final item = accountSettings[index];
                     return ListTile(
                       onTap: () {
+                        print(user.keys.toList()[index]);
                         Navigator.pushNamed(context,
-                            './${settingItems[index].title.toLowerCase()}');
+                            './${user.keys.toList()[index].toLowerCase().replaceAll(' ', '')}');
                       },
-                      title: Text(settingItems[index].title),
+                      title: Text(user.keys.toList()[index]),
+                      subtitle: Text(user.values.toList()[index]),
                     );
                   },
                   separatorBuilder: (BuildContext context, index) => Divider(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idntfy_app/screens/home.dart';
-import 'package:idntfy_app/screens/profile.dart';
+import 'package:idntfy_app/screens/profile/profile.dart';
 import 'package:idntfy_app/screens/scan.dart';
 
 class BottomNavigation extends StatefulWidget {
@@ -21,8 +21,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Color(0xff43D098),
-        elevation: 20,
+        selectedItemColor: Colors.black,
+        elevation: 15,
         currentIndex: _currentIndex,
         onTap: onTabTapped,
         items: <BottomNavigationBarItem>[
