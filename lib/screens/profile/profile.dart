@@ -10,8 +10,8 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   final user = User(
           // user data provided by database
-          address: 'Blockchain Street 145',
-          email: 'kevin@gmail.com',
+          address: 'Blockchain Street 135',
+          email: 'test@gmail.com',
           phoneNumber: '041 123 45 60',
           creditCardNumber: '1234 5678 9162 2345')
       .toMap();
@@ -19,6 +19,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
         children: <Widget>[
           Column(
@@ -76,6 +77,7 @@ class _ProfileState extends State<Profile> {
                       },
                       title: Text(user.keys.toList()[index]),
                       subtitle: Text(user.values.toList()[index]),
+                      trailing: Icon(Icons.arrow_forward_ios),
                     );
                   },
                   separatorBuilder: (BuildContext context, index) => Divider(

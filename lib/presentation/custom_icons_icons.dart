@@ -22,4 +22,7 @@ class CustomIcons {
 
   static const IconData grid = const IconData(0xe800, fontFamily: _kFontFam);
   static const IconData search = const IconData(0xe801, fontFamily: _kFontFam);
+  static const IconData home = const IconData(0xe802, fontFamily: _kFontFam);
+  static const IconData scan = const IconData(0xe803, fontFamily: _kFontFam);
+  static const IconData profile = const IconData(0xe804, fontFamily: _kFontFam);
 }

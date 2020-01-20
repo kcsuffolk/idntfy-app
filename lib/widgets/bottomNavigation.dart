@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:idntfy_app/presentation/custom_icons_icons.dart';
 import 'package:idntfy_app/screens/home.dart';
 import 'package:idntfy_app/screens/profile/profile.dart';
 import 'package:idntfy_app/screens/scan.dart';
@@ -21,8 +22,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
         selectedItemColor: Colors.black,
-        elevation: 15,
+        elevation: 10,
         currentIndex: _currentIndex,
         onTap: onTabTapped,
         items: <BottomNavigationBarItem>[
@@ -31,7 +33,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
             title: Text('Home'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.center_focus_weak),
+            icon: Icon(
+              Icons.center_focus_strong,
+              size: 40.0,
+            ),
             title: Text('Scan'),
           ),
           BottomNavigationBarItem(
