@@ -6,35 +6,6 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-// List Widget for "Latest Activity"
-Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
-  return Container(
-    child: ListTile(
-      onTap: () {
-        Navigator.pushNamed(context, './provideraccess');
-      },
-      title: Text(
-        document['name'],
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
-      ),
-      subtitle: Text(
-        document['datapoints'].toString() + ' datapoints shared',
-        style: TextStyle(height: 1.8),
-      ),
-      leading: ClipOval(
-        child: Image.asset(
-          'images/logos/${document['logo']}',
-          width: 50.0,
-        ),
-
-        // NetworkImage(
-        //     'https://www.google.com/s2/favicons?domain=www.${document['domain']}'),
-      ),
-      trailing: Icon(Icons.arrow_forward_ios),
-    ),
-  );
-}
-
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
@@ -85,4 +56,30 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+}
+
+// List Widget for "Latest Activity"
+Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
+  return Container(
+    child: ListTile(
+      onTap: () {
+        Navigator.pushNamed(context, './provideraccess');
+      },
+      title: Text(
+        document['name'],
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+      ),
+      subtitle: Text(
+        document['datapoints'].toString() + ' datapoints shared',
+        style: TextStyle(height: 1.8),
+      ),
+      leading: ClipOval(
+        child: Image.asset(
+          'images/logos/${document['logo']}',
+          width: 50.0,
+        ),
+      ),
+      trailing: Icon(Icons.arrow_forward_ios),
+    ),
+  );
 }

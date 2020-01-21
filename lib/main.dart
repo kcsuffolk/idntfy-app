@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       routes: {
         './': (context) => BottomNavigation(),
         './home': (context) => Home(),
-        './scan': (context) => QRScanner(),
+        './scan': (context) => QrScanner(),
         './profile': (context) => Profile(),
         './providers': (context) => AuthorizedProvders(),
         './address': (context) => Address(),
