@@ -55,7 +55,7 @@ class _HomeState extends State<Home> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            margin: EdgeInsets.only(top: 20.0, bottom: 25.0, left: 25.0),
+            margin: EdgeInsets.only(top: 20.0, bottom: 30.0, left: 25.0),
             child: Text(
               'Your Activity',
               style: TextStyle(

@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:idntfy_app/presentation/custom_icons_icons.dart';
 
-class Providers extends StatefulWidget {
+class AuthorizedProvders extends StatefulWidget {
   @override
-  _ProvidersState createState() => _ProvidersState();
+  _AuthorizedProvdersState createState() => _AuthorizedProvdersState();
 }
 
 Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
@@ -33,7 +33,7 @@ Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
   );
 }
 
-class _ProvidersState extends State<Providers> {
+class _AuthorizedProvdersState extends State<AuthorizedProvders> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +70,7 @@ class _ProvidersState extends State<Providers> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              padding: EdgeInsets.only(left: 20.0, top: 10.0),
+              margin: EdgeInsets.only(top: 20.0, bottom: 30.0, left: 25.0),
               child: Text(
                 'Authorized Providers',
                 style: TextStyle(
@@ -80,7 +80,9 @@ class _ProvidersState extends State<Providers> {
               ),
             ),
             StreamBuilder(
-                stream: Firestore.instance.collection('providers').snapshots(),
+                stream: Firestore.instance
+                    .collection('AuthorizedProvders')
+                    .snapshots(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) return Text('Loading...');
                   return Expanded(

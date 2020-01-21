@@ -4,7 +4,7 @@ import 'package:idntfy_app/screens/profile/emailaddress.dart';
 import 'package:idntfy_app/screens/profile/notifications.dart';
 import 'package:idntfy_app/screens/profile/profile.dart';
 import 'package:idntfy_app/screens/providerAccess.dart';
-import 'package:idntfy_app/screens/providers.dart';
+import 'package:idntfy_app/screens/authorizedProviders.dart';
 import 'package:idntfy_app/screens/scan.dart';
 import 'package:idntfy_app/screens/profile/address.dart';
 import 'package:idntfy_app/widgets/bottomNavigation.dart';
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         './home': (context) => Home(),
         './scan': (context) => QRScanner(),
         './profile': (context) => Profile(),
-        './providers': (context) => Providers(),
+        './providers': (context) => AuthorizedProvders(),
         './address': (context) => Address(),
         './emailaddress': (context) => Email(),
         './notifications': (context) => Notifications(),
