@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:idntfy_app/presentation/custom_icons_icons.dart';
 import 'package:idntfy_app/screens/home.dart';
 import 'package:idntfy_app/screens/profile/profile.dart';
 import 'package:idntfy_app/screens/scan.dart';

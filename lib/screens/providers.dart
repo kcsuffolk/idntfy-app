@@ -14,16 +14,17 @@ Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
       onTap: () {},
       title: Text(
         document['name'],
-        style: TextStyle(
-            fontFamily: 'Inter', fontWeight: FontWeight.bold, fontSize: 16.0),
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
       ),
       subtitle: Text(
         document['datapoints'].toString() + ' datapoints shared',
-        style: TextStyle(fontFamily: 'Inter', fontSize: 14.0, height: 1.8),
+        style: TextStyle(height: 1.8),
       ),
-      leading: CircleAvatar(
-        backgroundImage: AssetImage('images/logos/${document['logo']}'),
-        radius: 22.5,
+      leading: ClipOval(
+        child: Image.asset(
+          'images/logos/${document['logo']}',
+          width: 50.0,
+        ),
         // NetworkImage(
         //     'https://www.google.com/s2/favicons?domain=www.${document['domain']}'),
       ),
@@ -36,32 +37,31 @@ class _ProvidersState extends State<Providers> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        brightness: Brightness.light,
-        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
         actions: <Widget>[
-          Container(
-            width: 75.0,
-            margin: EdgeInsets.only(right: 25.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Icon(
-                  CustomIcons.search,
-                  color: Colors.black,
-                ),
-                Icon(CustomIcons.grid, color: Colors.black),
-              ],
+          IconButton(
+            icon: Icon(
+              CustomIcons.grid,
+              size: 20.0,
             ),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(
+              CustomIcons.search,
+              size: 20.0,
+            ),
+            onPressed: () {},
+          ),
+          SizedBox(
+            width: 8.0,
           ),
         ],
       ),
