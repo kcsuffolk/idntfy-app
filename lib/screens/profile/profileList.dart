@@ -11,7 +11,7 @@ class User {
       'Address': this.address,
       'Email Address': this.email,
       'Phone Number': this.phoneNumber,
-      'Credit Card Details': this.creditCardNumber
+      'Credit Card': this.creditCardNumber
     };
   }
 }

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
+class Activity extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,11 +24,7 @@ class _HomeState extends State<Home> {
             margin: EdgeInsets.only(top: 20.0, bottom: 30.0, left: 25.0),
             child: Text(
               'Your Activity',
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.bold,
-                fontSize: 26.0,
-              ),
+              style: Theme.of(context).textTheme.title,
             ),
           ),
           StreamBuilder(
@@ -65,13 +56,10 @@ Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
       onTap: () {
         Navigator.pushNamed(context, './provideraccess');
       },
-      title: Text(
-        document['name'],
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
-      ),
+      title: Text(document['name'], style: Theme.of(context).textTheme.subhead),
       subtitle: Text(
         document['datapoints'].toString() + ' datapoints shared',
-        style: TextStyle(height: 1.8),
+        style: TextStyle(height: 2.0),
       ),
       leading: ClipOval(
         child: Image.asset(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/widgets/profileList.dart';
+import 'package:idntfy_app/screens/profile/profileList.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Profile extends StatefulWidget {
@@ -38,10 +38,7 @@ class _ProfileState extends State<Profile> {
                         padding: EdgeInsets.symmetric(vertical: 15.0),
                         child: Text(
                           'Hanna Simons',
-                          style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 19.0),
+                          style: Theme.of(context).textTheme.subtitle,
                         ),
                       ),
                       Row(
@@ -75,8 +72,13 @@ class _ProfileState extends State<Profile> {
                         Navigator.pushNamed(context,
                             './${user.keys.toList()[index].toLowerCase().replaceAll(' ', '')}');
                       },
-                      title: Text(user.keys.toList()[index]),
-                      subtitle: Text(user.values.toList()[index]),
+                      title: Text(
+                        user.keys.toList()[index],
+                      ),
+                      subtitle: Text(
+                        user.values.toList()[index],
+                        style: TextStyle(height: 2.0),
+                      ),
                       trailing: Icon(Icons.arrow_forward_ios),
                     );
                   },

@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:idntfy_app/presentation/custom_icons_icons.dart';
 
-class AuthorizedProvders extends StatefulWidget {
+class AuthorizedProviders extends StatefulWidget {
   @override
-  _AuthorizedProvdersState createState() => _AuthorizedProvdersState();
+  _AuthorizedProvidersState createState() => _AuthorizedProvidersState();
 }
 
 Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
@@ -25,15 +25,13 @@ Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
           'images/logos/${document['logo']}',
           width: 50.0,
         ),
-        // NetworkImage(
-        //     'https://www.google.com/s2/favicons?domain=www.${document['domain']}'),
       ),
       trailing: Icon(Icons.arrow_forward_ios),
     ),
   );
 }
 
-class _AuthorizedProvdersState extends State<AuthorizedProvders> {
+class _AuthorizedProvidersState extends State<AuthorizedProviders> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,16 +71,11 @@ class _AuthorizedProvdersState extends State<AuthorizedProvders> {
               margin: EdgeInsets.only(top: 20.0, bottom: 30.0, left: 25.0),
               child: Text(
                 'Authorized Providers',
-                style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24.0),
+                style: Theme.of(context).textTheme.title,
               ),
             ),
             StreamBuilder(
-                stream: Firestore.instance
-                    .collection('AuthorizedProvders')
-                    .snapshots(),
+                stream: Firestore.instance.collection('providers').snapshots(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) return Text('Loading...');
                   return Expanded(

@@ -10,7 +10,10 @@ class ProviderAccess extends StatelessWidget {
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: Text('Provider Access'),
+        title: Text(
+          'Provider Access',
+          style: Theme.of(context).textTheme.subtitle,
+        ),
       ),
       body: Column(
         children: <Widget>[

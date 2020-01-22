@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/screens/home.dart';
-import 'package:idntfy_app/screens/profile/emailaddress.dart';
-import 'package:idntfy_app/screens/profile/notifications.dart';
-import 'package:idntfy_app/screens/profile/profile.dart';
-import 'package:idntfy_app/screens/providerAccess.dart';
-import 'package:idntfy_app/screens/authorizedProviders.dart';
-import 'package:idntfy_app/screens/scan.dart';
+import 'package:idntfy_app/screens/home/activity.dart';
+import 'package:idntfy_app/screens/home/profile.dart';
+import 'package:idntfy_app/screens/providers/providerAccess.dart';
+import 'package:idntfy_app/screens/providers/authorizedProviders.dart';
+import 'package:idntfy_app/screens/home/scan.dart';
 import 'package:idntfy_app/screens/profile/address.dart';
-import 'package:idntfy_app/widgets/bottomNavigation.dart';
+import 'package:idntfy_app/screens/home/home.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,24 +19,32 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Inter',
         textTheme: TextTheme(
           title: TextStyle(
-              fontFamily: 'Poppins',
-              fontSize: 20.0,
-              fontWeight: FontWeight.w600),
+            fontFamily: 'Poppins',
+            fontSize: 26.0,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF101D15),
+          ),
           subtitle: TextStyle(
-            fontSize: 14.0,
+            fontFamily: 'Poppins',
+            fontSize: 19.0,
+            fontWeight: FontWeight.w600,
+            color: Color(0xFF101D15),
+          ),
+          subhead: TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.w600,
+            color: Color(0xFF101D15),
           ),
         ),
       ),
       initialRoute: './',
       routes: {
-        './': (context) => BottomNavigation(),
-        './home': (context) => Home(),
+        './': (context) => Home(),
+        './home': (context) => Activity(),
         './scan': (context) => QrScanner(),
         './profile': (context) => Profile(),
-        './providers': (context) => AuthorizedProvders(),
+        './providers': (context) => AuthorizedProviders(),
         './address': (context) => Address(),
-        './emailaddress': (context) => Email(),
-        './notifications': (context) => Notifications(),
         './provideraccess': (context) => ProviderAccess(),
       },
     );

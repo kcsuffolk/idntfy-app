@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/screens/home.dart';
-import 'package:idntfy_app/screens/profile/profile.dart';
-import 'package:idntfy_app/screens/scan.dart';
+import 'package:idntfy_app/presentation/custom_icons_icons.dart';
+import 'package:idntfy_app/screens/home/activity.dart';
+import 'package:idntfy_app/screens/home/profile.dart';
+import 'package:idntfy_app/screens/home/scan.dart';
 
-class BottomNavigation extends StatefulWidget {
+class Home extends StatefulWidget {
   @override
-  _BottomNavigationState createState() => _BottomNavigationState();
+  _HomeState createState() => _HomeState();
 }
 
-class _BottomNavigationState extends State<BottomNavigation> {
+class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    Home(),
+    Activity(),
     QrScanner(),
     Profile(),
   ];
@@ -21,14 +22,16 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         backgroundColor: Colors.white,
-        selectedItemColor: Colors.black,
-        elevation: 10,
+        selectedItemColor: Color(0xFF43D098),
+        elevation: 15,
         currentIndex: _currentIndex,
         onTap: onTabTapped,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(CustomIcons.home),
             title: Text('Home'),
           ),
           BottomNavigationBarItem(
@@ -39,7 +42,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
             title: Text('Scan'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
+            icon: Icon(CustomIcons.profile),
             title: Text('Profile'),
           ),
         ],
