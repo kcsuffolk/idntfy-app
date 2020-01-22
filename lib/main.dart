@@ -3,7 +3,7 @@ import 'package:idntfy_app/screens/home/activity.dart';
 import 'package:idntfy_app/screens/profile/profile.dart';
 import 'package:idntfy_app/screens/providers/providerAccess.dart';
 import 'package:idntfy_app/screens/providers/authorizedProviders.dart';
-import 'package:idntfy_app/screens/home/scan.dart';
+import 'package:idntfy_app/screens/scan/qrScan.dart';
 import 'package:idntfy_app/screens/profile/address.dart';
 import 'package:idntfy_app/screens/home/home.dart';
 
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       routes: {
         './': (context) => Home(),
         './home': (context) => Activity(),
-        './scan': (context) => QrScanner(),
+        './scan': (context) => QrScan(),
         './profile': (context) => Profile(),
         './providers': (context) => AuthorizedProviders(),
         './address': (context) => Address(),
