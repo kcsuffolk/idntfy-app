@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/screens/Home.dart';
+import 'package:idntfy_app/models/user.dart';
+import 'package:idntfy_app/screens/authentication/authentication.dart';
+import 'package:idntfy_app/screens/home/home.dart';
+import 'package:provider/provider.dart';
 
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
+
     // return either home or authentication widget
-    return Home();
+    if (user == null) {
+      return Authentication();
+    } else {
+      return Home();
+    }
   }
 }

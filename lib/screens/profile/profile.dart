@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idntfy_app/screens/profile/profileList.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:idntfy_app/services/auth.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -15,6 +15,8 @@ class _ProfileState extends State<Profile> {
           phoneNumber: '041 123 45 60',
           creditCardNumber: '1234 5678 9162 2345')
       .toMap();
+
+  final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +88,18 @@ class _ProfileState extends State<Profile> {
                     thickness: 1,
                   ),
                 ),
+              ),
+              FlatButton(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Icon(Icons.do_not_disturb_off),
+                    Text('Sign Out'),
+                  ],
+                ),
+                onPressed: () async {
+                  await _auth.signOut();
+                },
               ),
             ],
           ),
