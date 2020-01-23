@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/screens/profile/profileList.dart';
+import 'package:idntfy_app/screens/profile/profile-list.dart';
 import 'package:idntfy_app/services/auth.dart';
 
 class Profile extends StatefulWidget {

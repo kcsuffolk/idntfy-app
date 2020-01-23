@@ -7,7 +7,7 @@ import 'package:idntfy_app/screens/profile/profile.dart';
 import 'package:idntfy_app/screens/providers/providerAccess.dart';
 import 'package:idntfy_app/screens/providers/authorizedProviders.dart';
 import 'package:idntfy_app/screens/scan/qrScan.dart';
-import 'package:idntfy_app/screens/profile/address.dart';
+import 'package:idntfy_app/screens/profile/user-form.dart';
 import 'package:idntfy_app/screens/home/home.dart';
 import 'package:idntfy_app/screens/wrapper.dart';
 import 'package:idntfy_app/services/auth.dart';
@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
           './scan': (context) => QrScan(),
           './profile': (context) => Profile(),
           './providers': (context) => AuthorizedProviders(),
-          './address': (context) => Address(),
+          './user-form': (context) => UserForm(),
           './provideraccess': (context) => ProviderAccess(),
           './signin': (context) => SignIn(),
           './register': (context) => Register(),

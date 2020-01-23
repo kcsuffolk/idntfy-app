@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:idntfy_app/models/user.dart';
 
 class DatabaseService {
   final String uid;
@@ -25,4 +26,23 @@ class DatabaseService {
       'datapoints': datapoints,
     });
   }
+
+  // userData from Snapshot
+  UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
+    return UserData(
+      uid: uid,
+      name: snapshot.data['name'],
+      address: snapshot.data['address'],
+      email: snapshot.data['email'],
+      phoneNumber: snapshot.data['phoneNumber'],
+      creditCard: snapshot.data['creditCard'],
+    );
+  }
+
+  // get user stream
+  Stream<UserData> get userData {
+    return userCollection.document(uid).snapshots().map(_userDataFromSnapshot);
+  }
+
+  // get providers stream
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Address extends StatelessWidget {
+class UserForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

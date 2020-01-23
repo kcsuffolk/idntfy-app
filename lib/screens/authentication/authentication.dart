@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:idntfy_app/screens/authentication/register.dart';
-// import 'package:idntfy_app/screens/authentication/sign_in.dart';
 
 class Authentication extends StatefulWidget {
   @override
