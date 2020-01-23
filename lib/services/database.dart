@@ -5,25 +5,33 @@ class DatabaseService {
   final String uid;
   DatabaseService({this.uid});
 
-  // collection reference
+  // collection reference in Firestore
   final CollectionReference userCollection =
       Firestore.instance.collection('users');
 
-  Future updateUserData(String address, String phoneNumber) async {
+  // create user document
+  Future updateUserData(String name, String email, String address,
+      String phoneNumber, String creditCard) async {
     return await userCollection.document(uid).setData({
+      'name': name,
+      'email': email,
       'address': address,
       'phoneNumber': phoneNumber,
+      'creditCard': creditCard,
     });
   }
 
-  Future updateUserProviderData(String provider, String datapoints) async {
+  // create provider collection in user document
+  Future updateUserProviderData(
+      String company, String datapoints, String domain) async {
     return await userCollection
         .document(uid)
         .collection('providers')
         .document()
         .setData({
-      'name': provider,
+      'name': company,
       'datapoints': datapoints,
+      'domain': domain,
     });
   }
 

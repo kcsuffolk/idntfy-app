@@ -1,110 +1,89 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/screens/profile/profile-list.dart';
 import 'package:idntfy_app/services/auth.dart';
+import 'package:idntfy_app/models/user.dart';
+import 'package:idntfy_app/services/database.dart';
+import 'package:provider/provider.dart';
 
-class Profile extends StatefulWidget {
-  @override
-  _ProfileState createState() => _ProfileState();
-}
-
-class _ProfileState extends State<Profile> {
-  final user = User(
-          // user data provided by database
-          address: 'Blockchain Street 135',
-          email: 'test@gmail.com',
-          phoneNumber: '041 123 45 60',
-          creditCardNumber: '1234 5678 9162 2345')
-      .toMap();
-
+class Profile extends StatelessWidget {
   final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Stack(
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-              Container(
-                width: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 55.0),
-                  child: Column(
-                    children: <Widget>[
-                      CircleAvatar(
-                        backgroundImage: AssetImage('images/faces/face.png'),
-                        maxRadius: 25,
-                      ),
-                      Container(
-                        padding: EdgeInsets.symmetric(vertical: 15.0),
-                        child: Text(
-                          'Hanna Simons',
-                          style: Theme.of(context).textTheme.subtitle,
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Icon(
-                            Icons.verified_user,
-                            color: Color(0xff43D098),
-                          ),
-                          SizedBox(width: 10.0),
-                          Text(
-                            'Verified',
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+    final user = Provider.of<User>(context);
+
+    return StreamBuilder<UserData>(
+        stream: DatabaseService(uid: user.uid).userData,
+        builder: (context, snapshot) {
+          return Scaffold(
+            backgroundColor: Colors.white,
+            body: Column(
+              children: <Widget>[
+                SizedBox(height: 55.0),
+                CircleAvatar(
+                  backgroundImage: AssetImage('images/faces/face.png'),
+                  radius: 40.0,
                 ),
-              ),
-              Expanded(
-                child: ListView.separated(
-                  itemCount: user.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      onTap: () {
-                        print(user.keys.toList()[index]);
-                        Navigator.pushNamed(context,
-                            './${user.keys.toList()[index].toLowerCase().replaceAll(' ', '')}');
-                      },
-                      title: Text(
-                        user.keys.toList()[index],
-                      ),
-                      subtitle: Text(
-                        user.values.toList()[index],
-                        style: TextStyle(height: 2.0),
-                      ),
-                      trailing: Icon(Icons.arrow_forward_ios),
-                    );
-                  },
-                  separatorBuilder: (BuildContext context, index) => Divider(
-                    thickness: 1,
-                  ),
+                SizedBox(height: 15.0),
+                Text(
+                  snapshot.data.name,
+                  style: Theme.of(context).textTheme.subtitle,
                 ),
-              ),
-              FlatButton(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                SizedBox(height: 15.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Icon(Icons.do_not_disturb_off),
-                    Text('Sign Out'),
+                    // Icon(
+                    //   Icons.verified_user,
+                    //   color: Color(0xff43D098),
+                    // ),
+                    SizedBox(width: 5.0),
+                    Text(
+                      'not verified',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        color: Colors.black,
+                      ),
+                    )
                   ],
                 ),
-                onPressed: () async {
-                  await _auth.signOut();
-                },
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+                Expanded(
+                  child: ListView.separated(
+                    itemCount: snapshot.data.toMap().length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        onTap: () {
+                          Navigator.pushNamed(context,
+                              './${snapshot.data.toMap().keys.toList()[index].toLowerCase().replaceAll(' ', '')}');
+                        },
+                        title: Text(
+                          snapshot.data.toMap().keys.toList()[index],
+                        ),
+                        subtitle: Text(
+                          snapshot.data.toMap().values.toList()[index],
+                          // style: TextStyle(height: 2.0),
+                        ),
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, index) => Divider(
+                      thickness: 1,
+                    ),
+                  ),
+                ),
+                FlatButton(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Icon(Icons.do_not_disturb_off),
+                      Text('Sign Out'),
+                    ],
+                  ),
+                  onPressed: () async {
+                    await _auth.signOut();
+                  },
+                ),
+              ],
+            ),
+          );
+        });
   }
 }

@@ -36,10 +36,10 @@ class AuthService {
       FirebaseUser user = result.user;
 
       // create a new document for the user with the uid
+      await DatabaseService(uid: user.uid).updateUserData(
+          'name', 'email', 'address', 'phoneNumber', 'creditCard');
       await DatabaseService(uid: user.uid)
-          .updateUserData('Enter your Address', 'Enter your Phone number');
-      await DatabaseService(uid: user.uid)
-          .updateUserProviderData('provider', 'datapoints');
+          .updateUserProviderData('company', 'datapoints', 'domain');
       return _userFromFirebase(user);
     } catch (e) {
       print(e.toString());
