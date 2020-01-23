@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idntfy_app/screens/profile/user_form.dart';
 import 'package:idntfy_app/services/auth.dart';
 import 'package:idntfy_app/models/user.dart';
 import 'package:idntfy_app/services/database.dart';
@@ -10,6 +11,17 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
+    void _showSettingsPanel() {
+      showModalBottomSheet(
+          isDismissible: true,
+          context: context,
+          builder: (context) {
+            return Container(
+              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
+              child: UserForm(),
+            );
+          });
+    }
 
     return StreamBuilder<UserData>(
         stream: DatabaseService(uid: user.uid).userData,
@@ -32,13 +44,13 @@ class Profile extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    // Icon(
-                    //   Icons.verified_user,
-                    //   color: Color(0xff43D098),
-                    // ),
+                    Icon(
+                      Icons.verified_user,
+                      color: Color(0xff43D098),
+                    ),
                     SizedBox(width: 5.0),
                     Text(
-                      'not verified',
+                      'verified',
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         color: Colors.black,
@@ -51,10 +63,7 @@ class Profile extends StatelessWidget {
                     itemCount: snapshot.data.toMap().length,
                     itemBuilder: (context, index) {
                       return ListTile(
-                        onTap: () {
-                          Navigator.pushNamed(context,
-                              './${snapshot.data.toMap().keys.toList()[index].toLowerCase().replaceAll(' ', '')}');
-                        },
+                        onTap: () => _showSettingsPanel(),
                         title: Text(
                           snapshot.data.toMap().keys.toList()[index],
                         ),
@@ -62,6 +71,7 @@ class Profile extends StatelessWidget {
                           snapshot.data.toMap().values.toList()[index],
                           // style: TextStyle(height: 2.0),
                         ),
+                        trailing: Icon(Icons.arrow_forward_ios),
                       );
                     },
                     separatorBuilder: (BuildContext context, index) => Divider(
@@ -69,14 +79,12 @@ class Profile extends StatelessWidget {
                     ),
                   ),
                 ),
-                FlatButton(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      Icon(Icons.do_not_disturb_off),
-                      Text('Sign Out'),
-                    ],
+                FlatButton.icon(
+                  icon: Icon(
+                    Icons.highlight_off,
+                    color: Colors.red,
                   ),
+                  label: Text('Sign out'),
                   onPressed: () async {
                     await _auth.signOut();
                   },
