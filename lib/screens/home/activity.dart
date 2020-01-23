@@ -1,6 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
+  return Container(
+    child: ListTile(
+      onTap: () {
+        Navigator.pushNamed(context, './provideraccess');
+      },
+      title: Text(document['name'], style: Theme.of(context).textTheme.subhead),
+      subtitle: Text(
+        document['datapoints'].toString() + ' datapoints shared',
+        style: TextStyle(height: 2.0),
+      ),
+      leading: ClipOval(
+        child: Image.asset(
+          'images/logos/${document['logo']}',
+          width: 50.0,
+        ),
+      ),
+      trailing: Icon(Icons.arrow_forward_ios),
+    ),
+  );
+}
+
 class Activity extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -47,27 +69,4 @@ class Activity extends StatelessWidget {
       ),
     );
   }
-}
-
-// List Widget for "Latest Activity"
-Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
-  return Container(
-    child: ListTile(
-      onTap: () {
-        Navigator.pushNamed(context, './provideraccess');
-      },
-      title: Text(document['name'], style: Theme.of(context).textTheme.subhead),
-      subtitle: Text(
-        document['datapoints'].toString() + ' datapoints shared',
-        style: TextStyle(height: 2.0),
-      ),
-      leading: ClipOval(
-        child: Image.asset(
-          'images/logos/${document['logo']}',
-          width: 50.0,
-        ),
-      ),
-      trailing: Icon(Icons.arrow_forward_ios),
-    ),
-  );
 }
