@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/screens/profile/user_form.dart';
 import 'package:idntfy_app/services/auth.dart';
 import 'package:idntfy_app/models/user.dart';
 import 'package:idntfy_app/services/database.dart';
@@ -11,17 +10,6 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
-    void _showSettingsPanel() {
-      showModalBottomSheet(
-          isDismissible: true,
-          context: context,
-          builder: (context) {
-            return Container(
-              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-              child: UserForm(),
-            );
-          });
-    }
 
     return StreamBuilder<UserData>(
         stream: DatabaseService(uid: user.uid).userData,
@@ -63,7 +51,7 @@ class Profile extends StatelessWidget {
                     itemCount: snapshot.data.toMap().length,
                     itemBuilder: (context, index) {
                       return ListTile(
-                        onTap: () => _showSettingsPanel(),
+                        onTap: () {},
                         title: Text(
                           snapshot.data.toMap().keys.toList()[index],
                         ),
