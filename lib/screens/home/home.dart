@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/src/shared/custom_icons_icons.dart';
-import 'package:idntfy_app/src/screens/home/activity_list.dart';
-import 'package:idntfy_app/src/screens/profile/profile.dart';
-import 'package:idntfy_app/src/screens/scan/qr_scan.dart';
+import 'package:idntfy_app/shared/custom_icons_icons.dart';
+import 'package:idntfy_app/screens/home/activity.dart';
+import 'package:idntfy_app/screens/profile/profile.dart';
+import 'package:idntfy_app/screens/scan/qr_scan.dart';
+
+// Bottom Navigation Bar
 
 class Home extends StatefulWidget {
   @override
@@ -12,7 +14,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    ActivityList(),
+    Activity(),
     QrScan(),
     Profile(),
   ];

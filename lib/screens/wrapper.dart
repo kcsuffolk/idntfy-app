@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/src/models/user.dart';
-import 'package:idntfy_app/src/screens/authentication/authentication.dart';
-import 'package:idntfy_app/src/screens/home/home.dart';
+import 'package:idntfy_app/models/user.dart';
+import 'package:idntfy_app/screens/authentication/authentication.dart';
+import 'package:idntfy_app/screens/home/home.dart';
 import 'package:provider/provider.dart';
 
 class Wrapper extends StatelessWidget {

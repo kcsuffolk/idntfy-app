@@ -23,7 +23,7 @@ Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
   );
 }
 
-class ActivityList extends StatelessWidget {
+class Activity extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

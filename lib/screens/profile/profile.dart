@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/src/services/auth.dart';
-import 'package:idntfy_app/src/models/user.dart';
-import 'package:idntfy_app/src/services/database.dart';
+import 'package:idntfy_app/services/auth.dart';
+import 'package:idntfy_app/models/user.dart';
+import 'package:idntfy_app/services/database.dart';
 import 'package:provider/provider.dart';
 
 class Profile extends StatelessWidget {
