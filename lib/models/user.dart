@@ -5,12 +5,7 @@ class User {
 }
 
 class UserData {
-  final String uid;
-  final String name;
-  final String address;
-  final String email;
-  final String phoneNumber;
-  final String creditCard;
+  final String uid, name, address, email, phoneNumber, creditCard;
 
   UserData({
     this.uid,
