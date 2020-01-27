@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/shared/custom_icons_icons.dart';
+import 'package:idntfy_app/src/shared/custom_icons_icons.dart';
 
 class AuthorizedProviders extends StatefulWidget {
   @override
