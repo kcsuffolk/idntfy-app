@@ -11,7 +11,7 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
 
-    return StreamBuilder<UserData>(
+    return StreamBuilder<User>(
         stream: DatabaseService(uid: user.uid).userData,
         builder: (context, snapshot) {
           return Scaffold(

@@ -36,8 +36,8 @@ class DatabaseService {
   }
 
   // userData from Snapshot
-  UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
-    return UserData(
+  User _userDataFromSnapshot(DocumentSnapshot snapshot) {
+    return User(
       uid: uid,
       name: snapshot.data['name'],
       address: snapshot.data['address'],
@@ -48,9 +48,10 @@ class DatabaseService {
   }
 
   // get user stream
-  Stream<UserData> get userData {
+  Stream<User> get userData {
     return userCollection.document(uid).snapshots().map(_userDataFromSnapshot);
   }
 
-  // get providers stream
+  // get provider stream
+
 }
