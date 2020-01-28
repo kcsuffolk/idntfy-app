@@ -35,23 +35,22 @@ class DatabaseService {
     });
   }
 
-  // // userData from Snapshot
-  // UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
-  //   return UserData(
-  //     uid: uid,
-  //     name: snapshot.data['name'],
-  //     address: snapshot.data['address'],
-  //     email: snapshot.data['email'],
-  //     phoneNumber: snapshot.data['phoneNumber'],
-  //     creditCard: snapshot.data['creditCard'],
-  //   );
-  // }
+  // userData from Snapshot
+  UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
+    return UserData(
+      uid: uid,
+      name: snapshot.data['name'],
+      address: snapshot.data['address'],
+      email: snapshot.data['email'],
+      phoneNumber: snapshot.data['phoneNumber'],
+      creditCard: snapshot.data['creditCard'],
+    );
+  }
 
-  // // get user doc stream
-  // Stream<UserData> get userData {
-  //   return userCollection.document(uid).snapshots().map(_userDataFromSnapshot);
-  // }
+  // get user stream
+  Stream<UserData> get userData {
+    return userCollection.document(uid).snapshots().map(_userDataFromSnapshot);
+  }
 
-  // // get provider stream
-
+  // get providers stream
 }
