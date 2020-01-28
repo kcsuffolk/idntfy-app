@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 ThemeData appTheme() {
   return ThemeData(
+    appBarTheme: AppBarTheme(elevation: 0.0),
     primaryColor: Colors.white,
     scaffoldBackgroundColor: Colors.white,
     fontFamily: 'Inter',
