@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:idntfy_app/services/auth.dart';
-import 'package:idntfy_app/models/user.dart';
 import 'package:idntfy_app/services/database.dart';
-import 'package:provider/provider.dart';
 
 class Profile extends StatelessWidget {
   final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
-
-    return StreamBuilder<User>(
-        stream: DatabaseService(uid: user.uid).userData,
+    return StreamBuilder<Object>(
+        stream: null,
         builder: (context, snapshot) {
           return Scaffold(
             backgroundColor: Colors.white,
@@ -25,7 +21,7 @@ class Profile extends StatelessWidget {
                 ),
                 SizedBox(height: 15.0),
                 Text(
-                  snapshot.data.name,
+                  'Test',
                   style: Theme.of(context).textTheme.subtitle,
                 ),
                 SizedBox(height: 15.0),
@@ -48,17 +44,19 @@ class Profile extends StatelessWidget {
                 ),
                 Expanded(
                   child: ListView.separated(
-                    itemCount: snapshot.data.toMap().length,
+                    itemCount: 4,
                     itemBuilder: (context, index) {
                       return ListTile(
-                        onTap: () {},
-                        title: Text(
-                          snapshot.data.toMap().keys.toList()[index],
-                        ),
-                        subtitle: Text(
-                          snapshot.data.toMap().values.toList()[index],
-                          // style: TextStyle(height: 2.0),
-                        ),
+                        onTap: () {
+                          print(DatabaseService().userCollection);
+                        },
+                        title: Text('Test'
+                            // snapshot.data.keys.toList()[index],
+                            ),
+                        subtitle: Text('Test'
+                            // snapshot.data.toMap().values.toList()[index],
+                            // style: TextStyle(height: 2.0),
+                            ),
                         trailing: Icon(Icons.arrow_forward_ios),
                       );
                     },

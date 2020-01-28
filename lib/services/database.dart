@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:idntfy_app/models/user.dart';
+// import 'package:idntfy_app/models/user.dart';
 
 class DatabaseService {
   final String uid;
@@ -9,7 +9,7 @@ class DatabaseService {
   final CollectionReference userCollection =
       Firestore.instance.collection('users');
 
-  // create user document
+  // method to create user data
   Future updateUserData(String name, String email, String address,
       String phoneNumber, String creditCard) async {
     return await userCollection.document(uid).setData({
@@ -21,7 +21,7 @@ class DatabaseService {
     });
   }
 
-  // create provider collection in user document
+  // method to create provder data in user collection
   Future updateUserProviderData(
       String company, String datapoints, String domain) async {
     return await userCollection
@@ -35,23 +35,23 @@ class DatabaseService {
     });
   }
 
-  // userData from Snapshot
-  User _userDataFromSnapshot(DocumentSnapshot snapshot) {
-    return User(
-      uid: uid,
-      name: snapshot.data['name'],
-      address: snapshot.data['address'],
-      email: snapshot.data['email'],
-      phoneNumber: snapshot.data['phoneNumber'],
-      creditCard: snapshot.data['creditCard'],
-    );
-  }
+  // // userData from Snapshot
+  // UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
+  //   return UserData(
+  //     uid: uid,
+  //     name: snapshot.data['name'],
+  //     address: snapshot.data['address'],
+  //     email: snapshot.data['email'],
+  //     phoneNumber: snapshot.data['phoneNumber'],
+  //     creditCard: snapshot.data['creditCard'],
+  //   );
+  // }
 
-  // get user stream
-  Stream<User> get userData {
-    return userCollection.document(uid).snapshots().map(_userDataFromSnapshot);
-  }
+  // // get user doc stream
+  // Stream<UserData> get userData {
+  //   return userCollection.document(uid).snapshots().map(_userDataFromSnapshot);
+  // }
 
-  // get provider stream
+  // // get provider stream
 
 }
