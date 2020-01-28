@@ -9,7 +9,7 @@ import 'package:idntfy_app/screens/providers/authorized_providers.dart';
 import 'package:idntfy_app/screens/scan/qr_scan.dart';
 import 'package:idntfy_app/screens/home/home.dart';
 import 'package:idntfy_app/screens/wrapper.dart';
-import 'package:idntfy_app/services/auth.dart';
+import 'package:idntfy_app/services/authentication.dart';
 import 'package:idntfy_app/shared/app_theme.dart';
 import 'package:provider/provider.dart';
 

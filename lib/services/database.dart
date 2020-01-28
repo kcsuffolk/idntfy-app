@@ -34,23 +34,4 @@ class DatabaseService {
       'domain': domain,
     });
   }
-
-  // userData from Snapshot
-  UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
-    return UserData(
-      uid: uid,
-      name: snapshot.data['name'],
-      address: snapshot.data['address'],
-      email: snapshot.data['email'],
-      phoneNumber: snapshot.data['phoneNumber'],
-      creditCard: snapshot.data['creditCard'],
-    );
-  }
-
-  // get user stream
-  Stream<UserData> get userData {
-    return userCollection.document(uid).snapshots().map(_userDataFromSnapshot);
-  }
-
-  // get providers stream
 }

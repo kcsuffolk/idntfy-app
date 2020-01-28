@@ -9,10 +9,10 @@ class UserForm extends StatefulWidget {
 class _UserFormState extends State<UserForm> {
   final _formKey = GlobalKey<FormState>();
 
-  String _currentAddress;
-  String _currentEmail;
-  String _currentPhoneNumber;
-  String _currentCreditCard;
+  String currentAddress;
+  String currentEmail;
+  String currentPhoneNumber;
+  String currentCreditCard;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class _UserFormState extends State<UserForm> {
             decoration: textInputDecoration.copyWith(labelText: 'Address'),
             validator: (val) => val.isEmpty ? 'Enter a valid address' : null,
             onChanged: (val) {
-              setState(() => _currentAddress = val);
+              setState(() => currentAddress = val);
             },
           ),
           SizedBox(height: 20.0),
@@ -37,7 +37,7 @@ class _UserFormState extends State<UserForm> {
             validator: (val) =>
                 val.isEmpty ? 'Enter a valid e-mail address' : null,
             onChanged: (val) {
-              setState(() => _currentEmail = val);
+              setState(() => currentEmail = val);
             },
           ),
           SizedBox(height: 20.0),
@@ -46,7 +46,7 @@ class _UserFormState extends State<UserForm> {
             validator: (val) =>
                 val.isEmpty ? 'Enter a valid phone number' : null,
             onChanged: (val) {
-              setState(() => _currentPhoneNumber = val);
+              setState(() => currentPhoneNumber = val);
             },
           ),
           SizedBox(height: 20.0),
@@ -56,7 +56,7 @@ class _UserFormState extends State<UserForm> {
             validator: (val) =>
                 val.isEmpty ? 'Enter a valid credit card number' : null,
             onChanged: (val) {
-              setState(() => _currentPhoneNumber = val);
+              setState(() => currentPhoneNumber = val);
             },
           ),
           SizedBox(height: 20.0),
