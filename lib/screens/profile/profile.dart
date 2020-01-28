@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:idntfy_app/screens/profile/profile_list.dart';
 import 'package:idntfy_app/services/authentication.dart';
 
 class Profile extends StatelessWidget {
@@ -39,19 +39,7 @@ class Profile extends StatelessWidget {
               )
             ],
           ),
-          Expanded(
-            child: ListView.separated(
-              itemCount: 4,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  trailing: Icon(Icons.arrow_forward_ios),
-                );
-              },
-              separatorBuilder: (BuildContext context, index) => Divider(
-                thickness: 1,
-              ),
-            ),
-          ),
+          ProfileList(),
           FlatButton.icon(
             icon: Icon(
               Icons.highlight_off,
