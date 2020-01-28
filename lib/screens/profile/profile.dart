@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idntfy_app/screens/profile/user_form.dart';
 import 'package:idntfy_app/services/auth.dart';
 import 'package:idntfy_app/services/database.dart';
 
@@ -7,8 +8,26 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     return StreamBuilder<Object>(
         stream: null,
+=======
+    final user = Provider.of<User>(context);
+    void _showSettingsPanel() {
+      showModalBottomSheet(
+          isDismissible: true,
+          context: context,
+          builder: (context) {
+            return Container(
+              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
+              child: UserForm(),
+            );
+          });
+    }
+
+    return StreamBuilder<UserData>(
+        stream: DatabaseService(uid: user.uid).userData,
+>>>>>>> parent of cc1b845... Rollback
         builder: (context, snapshot) {
           return Scaffold(
             backgroundColor: Colors.white,
@@ -47,6 +66,7 @@ class Profile extends StatelessWidget {
                     itemCount: 4,
                     itemBuilder: (context, index) {
                       return ListTile(
+<<<<<<< HEAD
                         onTap: () {
                           print(DatabaseService().userCollection);
                         },
@@ -57,6 +77,16 @@ class Profile extends StatelessWidget {
                             // snapshot.data.toMap().values.toList()[index],
                             // style: TextStyle(height: 2.0),
                             ),
+=======
+                        onTap: () => _showSettingsPanel(),
+                        title: Text(
+                          snapshot.data.toMap().keys.toList()[index],
+                        ),
+                        subtitle: Text(
+                          snapshot.data.toMap().values.toList()[index],
+                          // style: TextStyle(height: 2.0),
+                        ),
+>>>>>>> parent of cc1b845... Rollback
                         trailing: Icon(Icons.arrow_forward_ios),
                       );
                     },

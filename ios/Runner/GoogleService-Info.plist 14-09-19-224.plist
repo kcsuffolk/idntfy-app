@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:118598015757:ios:d8059fbd13424b4a41ae44</string>
+	<string>1:118598015757:ios:66e6d82d2e395eaa41ae44</string>
 	<key>DATABASE_URL</key>
 	<string>https://idntfy-ebf24.firebaseio.com</string>
 </dict>
