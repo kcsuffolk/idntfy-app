@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:idntfy_app/services/authentication.dart';
-import 'package:idntfy_app/shared/constants.dart';
-import 'package:idntfy_app/shared/loading.dart';
+import 'package:idntfy_app/shared/classes/loading.dart';
+import 'package:idntfy_app/shared/styles/constants.dart';
 
 class SignIn extends StatefulWidget {
   @override

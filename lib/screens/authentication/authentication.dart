@@ -50,7 +50,7 @@ class _AuthenticationState extends State<Authentication> {
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold),
               ),
-              onPressed: () => Navigator.pushNamed(context, './register'),
+              onPressed: () => Navigator.pushNamed(context, '/register'),
             ),
           ),
           SizedBox(
@@ -65,7 +65,7 @@ class _AuthenticationState extends State<Authentication> {
                       fontWeight: FontWeight.bold),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, './signin');
+                  Navigator.pushNamed(context, '/signin');
                 }),
           ),
         ],

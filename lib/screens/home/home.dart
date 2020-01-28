@@ -1,58 +1,72 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/shared/custom_icons_icons.dart';
-import 'package:idntfy_app/screens/home/activity.dart';
-import 'package:idntfy_app/screens/profile/profile.dart';
-import 'package:idntfy_app/screens/scan/qr_scan.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
+Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
+  return Container(
+    child: ListTile(
+      onTap: () {
+        Navigator.pushNamed(context, './provideraccess');
+      },
+      title: Text(document['name'], style: Theme.of(context).textTheme.subhead),
+      subtitle: Text(
+        document['datapoints'].toString() + ' datapoints shared',
+        style: TextStyle(height: 2.0),
+      ),
+      leading: ClipOval(
+        child: Image.asset(
+          'images/logos/${document['logo']}',
+          width: 50.0,
+        ),
+      ),
+      trailing: Icon(Icons.arrow_forward_ios),
+    ),
+  );
 }
 
-class _HomeState extends State<Home> {
-  int _currentIndex = 0;
-  final List<Widget> _children = [
-    Activity(),
-    QrScan(),
-    Profile(),
-  ];
-
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _children[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        backgroundColor: Colors.white,
-        selectedItemColor: Color(0xFF43D098),
-        elevation: 15,
-        currentIndex: _currentIndex,
-        onTap: onTabTapped,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(CustomIcons.home),
-            title: Text('Home'),
+      appBar: AppBar(
+        elevation: 0,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.important_devices),
+            onPressed: () {
+              Navigator.pushNamed(context, '/providers');
+            },
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.center_focus_strong,
-              size: 40.0,
+          SizedBox(width: 8.0),
+        ],
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(top: 20.0, bottom: 30.0, left: 25.0),
+            child: Text(
+              'Your Activity',
+              style: Theme.of(context).textTheme.title,
             ),
-            title: Text('Scan'),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(CustomIcons.profile),
-            title: Text('Profile'),
-          ),
+          StreamBuilder(
+              stream: Firestore.instance.collection('providers').snapshots(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) return const Text('Loading...');
+                return Expanded(
+                  child: ListView.separated(
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: snapshot.data.documents.length,
+                    itemBuilder: (BuildContext context, index) =>
+                        _buildListItem(context, snapshot.data.documents[index]),
+                    separatorBuilder: (BuildContext context, index) => Divider(
+                      thickness: 1,
+                    ),
+                  ),
+                );
+              }),
         ],
       ),
     );
-  }
-
-  void onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
   }
 }
