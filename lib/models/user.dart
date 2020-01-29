@@ -10,7 +10,7 @@ class UserData {
   final String address;
   final String email;
   final String phoneNumber;
-  final String creditCard;
+  // final String creditCard;
 
   UserData({
     this.uid,
@@ -18,7 +18,7 @@ class UserData {
     this.address,
     this.email,
     this.phoneNumber,
-    this.creditCard,
+    // this.creditCard,
   });
 
   Map<String, dynamic> toMap() {
@@ -26,7 +26,7 @@ class UserData {
       'Address': address,
       'Email Address': email,
       'Phone Number': phoneNumber,
-      'Credit Card Details': creditCard,
+      // 'Credit Card Details': creditCard,
     };
   }
 }

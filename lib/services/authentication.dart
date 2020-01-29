@@ -25,11 +25,7 @@ class AuthService {
 
       // create a new document for the user with the uid
       await DatabaseService(uid: user.uid).updateUserData(
-          name,
-          email,
-          'Enter your Address',
-          'Enter your Email Address',
-          'Enter your Credit Card Details');
+          name, email, 'Enter your Address', 'Enter your Phone Number');
       await DatabaseService(uid: user.uid)
           .updateUserProviderData('company', 'datapoints', 'domain');
       return _userFromFirebaseUser(user);

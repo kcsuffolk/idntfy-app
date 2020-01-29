@@ -11,14 +11,14 @@ class DatabaseService {
       Firestore.instance.collection('users');
 
   // method to create user data
-  Future updateUserData(String name, String email, String address,
-      String phoneNumber, String creditCard) async {
+  Future updateUserData(
+      String name, String email, String address, String phoneNumber) async {
     return await userCollection.document(uid).setData({
       'name': name,
       'email': email,
       'address': address,
       'phoneNumber': phoneNumber,
-      'creditCard': creditCard,
+      // 'creditCard': creditCard,
     });
   }
 
@@ -36,6 +36,7 @@ class DatabaseService {
     });
   }
 
+  // method to map user document snapshot to customer user model
   UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
     return UserData(
       uid: uid,
@@ -43,7 +44,7 @@ class DatabaseService {
       address: snapshot.data['address'],
       email: snapshot.data['email'],
       phoneNumber: snapshot.data['phoneNumber'],
-      creditCard: snapshot.data['creditCard'],
+      // creditCard: snapshot.data['creditCard'],
     );
   }
 

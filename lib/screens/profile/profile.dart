@@ -18,6 +18,8 @@ class Profile extends StatelessWidget {
         stream: DatabaseService(uid: userAuthStream.uid).getUserDocuments,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            UserData userData = snapshot.data;
+
             return Scaffold(
               backgroundColor: Colors.white,
               body: Column(
@@ -29,7 +31,7 @@ class Profile extends StatelessWidget {
                   ),
                   SizedBox(height: 15.0),
                   Text(
-                    snapshot.data.name,
+                    userData.name,
                     style: Theme.of(context).textTheme.subtitle,
                   ),
                   SizedBox(height: 15.0),
