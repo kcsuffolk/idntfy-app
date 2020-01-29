@@ -14,7 +14,6 @@ class _RegisterState extends State<Register> {
   bool loading = false;
 
   // text field state
-  String name = '';
   String email = '';
   String password = '';
   String error = '';
@@ -35,16 +34,6 @@ class _RegisterState extends State<Register> {
                 key: _formKey,
                 child: ListView(
                   children: <Widget>[
-                    SizedBox(height: 20.0),
-                    TextFormField(
-                      decoration:
-                          textInputDecoration.copyWith(labelText: 'Name'),
-                      validator: (val) =>
-                          val.isEmpty ? 'Enter your name' : null,
-                      onChanged: (val) {
-                        setState(() => name = val);
-                      },
-                    ),
                     SizedBox(height: 20.0),
                     TextFormField(
                       decoration:
