@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:idntfy_app/services/authentication.dart';
 import 'package:idntfy_app/shared/classes/loading.dart';
-import 'package:idntfy_app/shared/styles/constants.dart';
+import 'package:idntfy_app/shared/styles/form_fields.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -90,7 +90,7 @@ class _RegisterState extends State<Register> {
                             if (result == null) {
                               setState(() {
                                 loading = false;
-                                error = 'Please check your input';
+                                error = 'Please supply a valid email address';
                               });
                             } else {
                               Navigator.pop(context);
