@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:idntfy_app/shared/classes/loading.dart';
 
 class ActivityList extends StatelessWidget {
   @override
@@ -7,18 +8,21 @@ class ActivityList extends StatelessWidget {
     return StreamBuilder(
         stream: Firestore.instance.collection('providers').snapshots(),
         builder: (context, snapshot) {
-          if (!snapshot.hasData) return const Text('Loading...');
-          return Expanded(
-            child: ListView.separated(
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: snapshot.data.documents.length,
-              itemBuilder: (BuildContext context, index) =>
-                  _buildListItem(context, snapshot.data.documents[index]),
-              separatorBuilder: (BuildContext context, index) => Divider(
-                thickness: 1,
+          if (snapshot.hasData) {
+            return Expanded(
+              child: ListView.separated(
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: snapshot.data.documents.length,
+                itemBuilder: (BuildContext context, index) =>
+                    _buildListItem(context, snapshot.data.documents[index]),
+                separatorBuilder: (BuildContext context, index) => Divider(
+                  thickness: 1,
+                ),
               ),
-            ),
-          );
+            );
+          } else {
+            return Loading();
+          }
         });
   }
 }

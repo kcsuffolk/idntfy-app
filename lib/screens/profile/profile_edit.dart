@@ -36,86 +36,83 @@ class _ProfileEditState extends State<ProfileEdit> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 20.0, vertical: 20.0),
-                  child: ListView(
-                    children: <Widget>[
-                      Center(
-                        child: Text('Edit your information',
-                            style: TextStyle(
-                                fontFamily: 'Poppins', color: Colors.black)),
-                      ),
-                      SizedBox(height: 20.0),
-                      TextFormField(
-                        initialValue: userData.address,
-                        decoration:
-                            textInputDecoration.copyWith(labelText: 'Address'),
-                        validator: (val) =>
-                            val.isEmpty ? 'Enter your Address' : null,
-                        onChanged: (val) {
-                          setState(() => _currentAddress = val);
-                        },
-                      ),
-                      SizedBox(height: 20.0),
-                      TextFormField(
-                        initialValue: userData.email,
-                        decoration:
-                            textInputDecoration.copyWith(labelText: 'Email'),
-                        validator: (val) =>
-                            val.isEmpty ? 'Enter your Email Address' : null,
-                        onChanged: (val) {
-                          setState(() => _currentEmail = val);
-                        },
-                      ),
-                      SizedBox(height: 20.0),
-                      TextFormField(
-                        style: TextStyle(
-                          fontSize: 16.0,
-                        ),
-                        initialValue: userData.phoneNumber,
-                        decoration: textInputDecoration.copyWith(
-                            labelText: 'Phone Number'),
-                        validator: (val) =>
-                            val.isEmpty ? 'Enter your Phone Number' : null,
-                        onChanged: (val) {
-                          setState(() => _currentPhoneNumber = val);
-                        },
-                      ),
-                      // SizedBox(height: 20.0),
-                      // TextFormField(
-                      //   decoration: textInputDecoration.copyWith(labelText: 'Address'),
-                      //   validator: (val) => val.isEmpty ? 'Enter your Addres' : null,
-                      //   onChanged: (val) {
-                      //     setState(() => _currentAddress = val);
-                      //   },
-                      // ),
-                      SizedBox(height: 20.0),
-                      SizedBox(
-                        width: 300.0,
-                        height: 55.0,
-                        child: FlatButton(
-                          color: Color(0xFF43D098),
-                          colorBrightness: Brightness.dark,
-                          child: Text(
-                            'Save changes',
-                            style: TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          onPressed: () async {
-                            if (_formKey.currentState.validate()) {
-                              await DatabaseService(uid: userAuthStream.uid)
-                                  .updateUserData(
-                                      userData.name,
-                                      _currentEmail ?? userData.email,
-                                      _currentAddress ?? userData.address,
-                                      _currentPhoneNumber ??
-                                          userData.phoneNumber);
-                              Navigator.pop(context);
-                            }
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(height: 50.0),
+                        TextFormField(
+                          initialValue: userData.address,
+                          decoration: textInputDecoration.copyWith(
+                              labelText: 'Address'),
+                          validator: (val) =>
+                              val.isEmpty ? 'Enter your Address' : null,
+                          onChanged: (val) {
+                            setState(() => _currentAddress = val);
                           },
                         ),
-                      ),
-                    ],
+                        SizedBox(height: 20.0),
+                        TextFormField(
+                          initialValue: userData.email,
+                          decoration:
+                              textInputDecoration.copyWith(labelText: 'Email'),
+                          validator: (val) =>
+                              val.isEmpty ? 'Enter your Email Address' : null,
+                          onChanged: (val) {
+                            setState(() => _currentEmail = val);
+                          },
+                        ),
+                        SizedBox(height: 20.0),
+                        TextFormField(
+                          style: TextStyle(
+                            fontSize: 16.0,
+                          ),
+                          initialValue: userData.phoneNumber,
+                          decoration: textInputDecoration.copyWith(
+                              labelText: 'Phone Number'),
+                          validator: (val) =>
+                              val.isEmpty ? 'Enter your Phone Number' : null,
+                          onChanged: (val) {
+                            setState(() => _currentPhoneNumber = val);
+                          },
+                        ),
+                        // SizedBox(height: 20.0),
+                        // TextFormField(
+                        //   decoration: textInputDecoration.copyWith(labelText: 'Address'),
+                        //   validator: (val) => val.isEmpty ? 'Enter your Addres' : null,
+                        //   onChanged: (val) {
+                        //     setState(() => _currentAddress = val);
+                        //   },
+                        // ),
+                        SizedBox(height: 20.0),
+                        SizedBox(
+                          width: 300.0,
+                          height: 55.0,
+                          child: FlatButton(
+                            color: Color(0xFF43D098),
+                            colorBrightness: Brightness.dark,
+                            child: Text(
+                              'Save changes',
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            onPressed: () async {
+                              if (_formKey.currentState.validate()) {
+                                await DatabaseService(uid: userAuthStream.uid)
+                                    .updateUserData(
+                                        userData.name,
+                                        _currentEmail ?? userData.email,
+                                        _currentAddress ?? userData.address,
+                                        _currentPhoneNumber ??
+                                            userData.phoneNumber);
+                                Navigator.pop(context);
+                              }
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
