@@ -11,6 +11,7 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _userAuthStream = Provider.of<User>(context);
+
     return StreamBuilder<UserData>(
         stream: DatabaseService(uid: _userAuthStream.uid).getUserDocuments,
         builder: (context, snapshot) {
@@ -44,7 +45,9 @@ class Profile extends StatelessWidget {
                     )
                   ],
                 ),
-                ProfileList(),
+                Expanded(
+                  child: ProfileList(),
+                ),
                 FlatButton.icon(
                   icon: Icon(
                     Icons.highlight_off,

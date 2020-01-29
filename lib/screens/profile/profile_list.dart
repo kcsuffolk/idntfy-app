@@ -12,20 +12,20 @@ class ProfileList extends StatelessWidget {
     return StreamBuilder<UserData>(
         stream: DatabaseService(uid: _userAuthStream.uid).getUserDocuments,
         builder: (context, snapshot) {
-          return Expanded(
-            child: ListView.separated(
-              itemCount: snapshot.data.toMap().length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(snapshot.data.toMap().keys.toList()[index]),
-                  subtitle: Text(snapshot.data.toMap().values.toList()[index]),
-                  onTap: () {},
-                  trailing: Icon(Icons.arrow_forward_ios),
-                );
-              },
-              separatorBuilder: (BuildContext context, index) => Divider(
-                thickness: 1,
-              ),
+          return ListView.separated(
+            itemCount: snapshot.data.toMap().length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(snapshot.data.toMap().keys.toList()[index],
+                    style: Theme.of(context).textTheme.subhead),
+                subtitle: Text(snapshot.data.toMap().values.toList()[index],
+                    style: TextStyle(height: 2.0)),
+                onTap: () {},
+                trailing: Icon(Icons.arrow_forward_ios),
+              );
+            },
+            separatorBuilder: (BuildContext context, index) => Divider(
+              thickness: 1,
             ),
           );
         });
