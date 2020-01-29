@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:idntfy_app/models/user.dart';
 import 'package:idntfy_app/services/database.dart';
+import 'package:idntfy_app/shared/classes/loading.dart';
 import 'package:provider/provider.dart';
 
 class ProfileList extends StatelessWidget {
@@ -12,22 +13,26 @@ class ProfileList extends StatelessWidget {
     return StreamBuilder<UserData>(
         stream: DatabaseService(uid: _userAuthStream.uid).getUserDocuments,
         builder: (context, snapshot) {
-          return ListView.separated(
-            itemCount: snapshot.data.toMap().length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(snapshot.data.toMap().keys.toList()[index],
-                    style: Theme.of(context).textTheme.subhead),
-                subtitle: Text(snapshot.data.toMap().values.toList()[index],
-                    style: TextStyle(height: 2.0)),
-                onTap: () {},
-                trailing: Icon(Icons.arrow_forward_ios),
-              );
-            },
-            separatorBuilder: (BuildContext context, index) => Divider(
-              thickness: 1,
-            ),
-          );
+          if (snapshot.hasData) {
+            return ListView.separated(
+              itemCount: snapshot.data.toMap().length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(snapshot.data.toMap().keys.toList()[index],
+                      style: Theme.of(context).textTheme.subhead),
+                  subtitle: Text(snapshot.data.toMap().values.toList()[index],
+                      style: TextStyle(height: 2.0)),
+                  onTap: () {},
+                  trailing: Icon(Icons.arrow_forward_ios),
+                );
+              },
+              separatorBuilder: (BuildContext context, index) => Divider(
+                thickness: 1,
+              ),
+            );
+          } else {
+            return Loading();
+          }
         });
   }
 }

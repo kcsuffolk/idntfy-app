@@ -36,7 +36,7 @@ class _AuthenticationState extends State<Authentication> {
             height: 145.0,
           ),
           SizedBox(height: 30.0),
-          Image.asset('image/indicator_3.png'),
+          // Image.asset('image/indicator_3.png'),
           SizedBox(
             width: 300.0,
             height: 55.0,
