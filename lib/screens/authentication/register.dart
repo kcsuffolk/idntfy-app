@@ -14,7 +14,6 @@ class _RegisterState extends State<Register> {
   bool loading = false;
 
   // text field state
-  String name = '';
   String email = '';
   String password = '';
   String error = '';
@@ -38,6 +37,7 @@ class _RegisterState extends State<Register> {
                     SizedBox(height: 20.0),
                     TextFormField(
                       decoration:
+<<<<<<< HEAD
                           textInputDecoration.copyWith(labelText: 'Name'),
                       validator: (val) =>
                           val.isEmpty ? 'Enter your name' : null,
@@ -48,6 +48,8 @@ class _RegisterState extends State<Register> {
                     SizedBox(height: 20.0),
                     TextFormField(
                       decoration:
+=======
+>>>>>>> parent of 96c7151... Created Name Field in Registration
                           textInputDecoration.copyWith(labelText: 'Email'),
                       validator: (val) =>
                           val.isEmpty ? 'Enter a valid email address' : null,
