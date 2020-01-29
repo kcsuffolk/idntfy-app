@@ -7,28 +7,33 @@ import 'package:idntfy_app/screens/providers/provider_access.dart';
 import 'package:idntfy_app/screens/providers/authorized_providers.dart';
 import 'package:idntfy_app/screens/scan/qr_scan.dart';
 import 'package:idntfy_app/screens/wrapper.dart';
+import 'package:idntfy_app/services/authentication.dart';
 import 'package:idntfy_app/shared/classes/navigation.dart';
 import 'package:idntfy_app/shared/styles/app_theme.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(App());
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: appTheme(),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => Wrapper(),
-        '/home': (context) => Home(),
-        '/scan': (context) => QrScan(),
-        '/profile': (context) => Profile(),
-        '/providers': (context) => AuthorizedProviders(),
-        '/provideraccess': (context) => ProviderAccess(),
-        '/signin': (context) => SignIn(),
-        '/register': (context) => Register(),
-        '/navigation': (context) => Navigation(),
-      },
+    return StreamProvider.value(
+      value: AuthService().userState,
+      child: MaterialApp(
+        theme: appTheme(),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => Wrapper(),
+          '/home': (context) => Home(),
+          '/scan': (context) => QrScan(),
+          '/profile': (context) => Profile(),
+          '/providers': (context) => AuthorizedProviders(),
+          '/provideraccess': (context) => ProviderAccess(),
+          '/signin': (context) => SignIn(),
+          '/register': (context) => Register(),
+          '/navigation': (context) => Navigation(),
+        },
+      ),
     );
   }
 }

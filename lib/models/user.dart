@@ -20,4 +20,13 @@ class UserData {
     this.phoneNumber,
     this.creditCard,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'Address': address,
+      'Email Address': email,
+      'Phone Number': phoneNumber,
+      'Credit Card Details': creditCard,
+    };
+  }
 }

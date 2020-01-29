@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:idntfy_app/models/user.dart';
 // import 'package:idntfy_app/models/user.dart';
 
 class DatabaseService {
@@ -33,5 +34,21 @@ class DatabaseService {
       'datapoints': datapoints,
       'domain': domain,
     });
+  }
+
+  UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
+    return UserData(
+      uid: uid,
+      name: snapshot.data['name'],
+      address: snapshot.data['address'],
+      email: snapshot.data['email'],
+      phoneNumber: snapshot.data['phoneNumber'],
+      creditCard: snapshot.data['creditCard'],
+    );
+  }
+
+  // get user document stream
+  Stream<UserData> get getUserDocuments {
+    return userCollection.document(uid).snapshots().map(_userDataFromSnapshot);
   }
 }

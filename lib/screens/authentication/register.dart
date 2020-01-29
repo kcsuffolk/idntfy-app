@@ -33,7 +33,7 @@ class _RegisterState extends State<Register> {
               padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
               child: Form(
                 key: _formKey,
-                child: Column(
+                child: ListView(
                   children: <Widget>[
                     SizedBox(height: 20.0),
                     TextFormField(
@@ -86,7 +86,7 @@ class _RegisterState extends State<Register> {
                             setState(() => loading = true);
                             dynamic result =
                                 await _auth.registerWithEmailAndPassword(
-                                    email, password, name);
+                                    name, email, password);
                             if (result == null) {
                               setState(() {
                                 loading = false;
