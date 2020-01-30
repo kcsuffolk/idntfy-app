@@ -33,11 +33,10 @@ class _RegisterState extends State<Register> {
               key: _formKey,
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 20.0, vertical: 35.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Column(
                     children: <Widget>[
-                      SizedBox(height: 35.0),
+                      SizedBox(height: 70.0),
                       Image.asset('images/logos/logo.png'),
                       SizedBox(height: 20.0),
                       TextFormField(
