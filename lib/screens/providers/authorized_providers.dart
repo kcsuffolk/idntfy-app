@@ -1,37 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:idntfy_app/shared/classes/loading.dart';
 import 'package:idntfy_app/shared/styles/custom_icons_icons.dart';
 
-class AuthorizedProviders extends StatefulWidget {
-  @override
-  _AuthorizedProvidersState createState() => _AuthorizedProvidersState();
-}
-
-Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
-  return Container(
-    padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 4.0),
-    child: ListTile(
-      onTap: () {},
-      title: Text(
-        document['name'],
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
-      ),
-      subtitle: Text(
-        document['datapoints'].toString() + ' datapoints shared',
-        style: TextStyle(height: 1.8),
-      ),
-      leading: ClipOval(
-        child: Image.asset(
-          'images/logos/${document['logo']}',
-          width: 50.0,
-        ),
-      ),
-      trailing: Icon(Icons.arrow_forward_ios),
-    ),
-  );
-}
-
-class _AuthorizedProvidersState extends State<AuthorizedProviders> {
+class AuthorizedProviders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +49,7 @@ class _AuthorizedProvidersState extends State<AuthorizedProviders> {
             StreamBuilder(
                 stream: Firestore.instance.collection('providers').snapshots(),
                 builder: (context, snapshot) {
-                  if (!snapshot.hasData) return Text('Loading...');
+                  if (!snapshot.hasData) return Loading();
                   return Expanded(
                     child: ListView.builder(
                       itemCount: snapshot.data.documents.length,
@@ -92,4 +64,28 @@ class _AuthorizedProvidersState extends State<AuthorizedProviders> {
       ),
     );
   }
+}
+
+Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
+  return Container(
+    padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 4.0),
+    child: ListTile(
+      onTap: () {},
+      title: Text(
+        document['name'],
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+      ),
+      subtitle: Text(
+        document['datapoints'].toString() + ' datapoints shared',
+        style: TextStyle(height: 1.8),
+      ),
+      leading: ClipOval(
+        child: Image.asset(
+          'images/logos/${document['logo']}',
+          width: 50.0,
+        ),
+      ),
+      trailing: Icon(Icons.arrow_forward_ios),
+    ),
+  );
 }
