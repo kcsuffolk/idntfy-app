@@ -17,7 +17,7 @@ class ProfileList extends StatelessWidget {
             UserData userData = snapshot.data;
 
             return ListView.separated(
-              itemCount: snapshot.data.toMap().length,
+              itemCount: userData.toMap().length,
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(userData.toMap().keys.toList()[index],
