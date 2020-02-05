@@ -1,11 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:idntfy_app/services/database.dart';
 import 'package:idntfy_app/shared/classes/loading.dart';
 import 'package:idntfy_app/shared/styles/custom_icons_icons.dart';
+import 'package:idntfy_app/models/user.dart';
+import 'package:provider/provider.dart';
 
 class AuthorizedProviders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final userAuthStream = Provider.of<User>(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -47,9 +51,11 @@ class AuthorizedProviders extends StatelessWidget {
               ),
             ),
             StreamBuilder(
-                stream: Firestore.instance.collection('providers').snapshots(),
+                stream: DatabaseService(uid: userAuthStream.uid)
+                    .getProviderCollection,
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) return Loading();
+
                   return Expanded(
                     child: ListView.builder(
                       itemCount: snapshot.data.documents.length,
@@ -68,16 +74,15 @@ class AuthorizedProviders extends StatelessWidget {
 
 Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
   return Container(
-    padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 4.0),
     child: ListTile(
-      onTap: () {},
-      title: Text(
-        document['name'],
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
-      ),
+      onTap: () {
+        Navigator.pushNamed(context, '/provideraccess');
+      },
+      title:
+          Text(document['company'], style: Theme.of(context).textTheme.subhead),
       subtitle: Text(
         document['datapoints'].toString() + ' datapoints shared',
-        style: TextStyle(height: 1.8),
+        style: TextStyle(height: 2.0),
       ),
       leading: ClipOval(
         child: Image.asset(

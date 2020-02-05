@@ -32,7 +32,7 @@ Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
   return Container(
     child: ListTile(
       onTap: () {
-        // Navigator.pushNamed(context, './provideraccess');
+        Navigator.pushNamed(context, '/provideraccess');
       },
       title:
           Text(document['company'], style: Theme.of(context).textTheme.subhead),
