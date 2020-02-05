@@ -23,18 +23,27 @@ class DatabaseService {
 
   // method to create provider data in user collection
   Future updateUserProviderData(
-    String company,
-    String domain,
-    String datapoints,
-  ) async {
-    return await userCollection
-        .document(uid)
-        .collection('providers')
-        .document(uid)
-        .setData({
+      String company, String domain, String datapoints) async {
+    return await userCollection.document(uid).collection('providers').add({
       'company': company,
       'domain': domain,
       'datapoints': datapoints,
+    });
+  }
+
+  // method to create provider data access in provider collection
+  Future updateUserProviderAccess(String docID, String name, String email,
+      String address, String phoneNumber) async {
+    return await userCollection
+        .document(uid)
+        .collection('providers')
+        .document(docID)
+        .collection('providerAccess')
+        .add({
+      'name': name,
+      'email': email,
+      'address': address,
+      'phoneNumber': phoneNumber,
     });
   }
 
