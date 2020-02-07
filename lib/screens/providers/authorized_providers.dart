@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:idntfy_app/screens/providers/provider_access.dart';
 import 'package:idntfy_app/services/database.dart';
 import 'package:idntfy_app/shared/classes/loading.dart';
 import 'package:idntfy_app/shared/styles/custom_icons_icons.dart';
@@ -39,34 +40,31 @@ class AuthorizedProviders extends StatelessWidget {
           ),
         ],
       ),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(top: 20.0, bottom: 30.0, left: 25.0),
-              child: Text(
-                'Authorized Providers',
-                style: Theme.of(context).textTheme.title,
-              ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(top: 20.0, bottom: 30.0, left: 25.0),
+            child: Text(
+              'Authorized Providers',
+              style: Theme.of(context).textTheme.title,
             ),
-            StreamBuilder(
-                stream: DatabaseService(uid: userAuthStream.uid)
-                    .getProviderCollection,
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) return Loading();
+          ),
+          StreamBuilder(
+              stream: DatabaseService(uid: userAuthStream.uid)
+                  .getProviderCollection,
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) return Loading();
 
-                  return Expanded(
-                    child: ListView.builder(
-                      itemCount: snapshot.data.documents.length,
-                      itemBuilder: (BuildContext context, index) =>
-                          _buildListItem(
-                              context, snapshot.data.documents[index]),
-                    ),
-                  );
-                }),
-          ],
-        ),
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: snapshot.data.documents.length,
+                    itemBuilder: (BuildContext context, index) =>
+                        _buildListItem(context, snapshot.data.documents[index]),
+                  ),
+                );
+              }),
+        ],
       ),
     );
   }
@@ -76,7 +74,12 @@ Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
   return Container(
     child: ListTile(
       onTap: () {
-        Navigator.pushNamed(context, '/provideraccess');
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    ProviderAccess(providerAccessRef: document.documentID)));
+        print(document.documentID);
       },
       title:
           Text(document['company'], style: Theme.of(context).textTheme.subhead),
@@ -84,12 +87,12 @@ Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
         document['datapoints'].toString() + ' datapoints shared',
         style: TextStyle(height: 2.0),
       ),
-      leading: ClipOval(
-        child: Image.asset(
-          'images/logos/${document['logo']}',
-          width: 50.0,
-        ),
-      ),
+      // leading: ClipOval(
+      //   child: Image.asset(
+      //     'images/logos/${document['logo']}',
+      //     width: 50.0,
+      //   ),
+      // ),
       trailing: Icon(Icons.arrow_forward_ios),
     ),
   );

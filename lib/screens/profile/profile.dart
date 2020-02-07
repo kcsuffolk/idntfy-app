@@ -49,7 +49,9 @@ class Profile extends StatelessWidget {
                       )
                     ],
                   ),
-                  Expanded(child: ProfileList()),
+                  Expanded(
+                    child: ProfileList(),
+                  ),
                   FlatButton.icon(
                     icon: Icon(
                       Icons.highlight_off,

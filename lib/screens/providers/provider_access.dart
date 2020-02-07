@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:idntfy_app/screens/providers/provider_access_list.dart';
 
 class ProviderAccess extends StatelessWidget {
+  final String providerAccessRef;
+
+  ProviderAccess({Key key, this.providerAccessRef}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,12 +22,15 @@ class ProviderAccess extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          // ClipOval(
-          //   child: Image.asset(
-          // 'images/logos/${document['logo']}',
-          // width: 85.0,
-          //   ),
-          // )
+          ClipOval(
+            child: Image.asset(
+              'images/logos/${document['logo']}',
+              width: 85.0,
+            ),
+          ),
+          Expanded(
+            child: ProviderAccessList(providerAccessRef: providerAccessRef),
+          ),
         ],
       ),
     );
