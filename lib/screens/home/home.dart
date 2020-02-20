@@ -26,7 +26,9 @@ class Home extends StatelessWidget {
               style: Theme.of(context).textTheme.title,
             ),
           ),
-          ActivityList(),
+          Expanded(
+            child: ActivityList(),
+          ),
         ],
       ),
     );

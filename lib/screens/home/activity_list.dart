@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:idntfy_app/screens/providers/provider_access.dart';
 import 'package:idntfy_app/services/database.dart';
 import 'package:idntfy_app/shared/classes/loading.dart';
 import 'package:provider/provider.dart';
@@ -12,9 +13,18 @@ class ActivityList extends StatelessWidget {
     return StreamBuilder(
         stream: DatabaseService(uid: userAuthStream.uid).getProviderCollection,
         builder: (context, snapshot) {
-          if (!snapshot.hasData) return Loading();
-          return Expanded(
-            child: ListView.separated(
+          if (!snapshot.hasData) {
+            return Loading();
+          } else if (snapshot.data.documents.length < 1) {
+            return Container(
+              padding: EdgeInsets.symmetric(horizontal: 25.0),
+              child: Text(
+                'Your latest transactions will be listed here',
+                style: TextStyle(height: 1.5),
+              ),
+            );
+          } else {
+            return ListView.separated(
               physics: NeverScrollableScrollPhysics(),
               itemCount: snapshot.data.documents.length,
               itemBuilder: (BuildContext context, index) =>
@@ -22,8 +32,8 @@ class ActivityList extends StatelessWidget {
               separatorBuilder: (BuildContext context, index) => Divider(
                 thickness: 1,
               ),
-            ),
-          );
+            );
+          }
         });
   }
 }
@@ -32,7 +42,11 @@ Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
   return Container(
     child: ListTile(
       onTap: () {
-        Navigator.pushNamed(context, '/provideraccess');
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    ProviderAccess(providerAccessRef: document.documentID)));
       },
       title:
           Text(document['company'], style: Theme.of(context).textTheme.subhead),

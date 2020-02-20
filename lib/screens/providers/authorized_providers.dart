@@ -11,6 +11,7 @@ class AuthorizedProviders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userAuthStream = Provider.of<User>(context);
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -21,13 +22,13 @@ class AuthorizedProviders extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(),
         ),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              CustomIcons.grid,
-              size: 20.0,
-            ),
-            onPressed: () {},
-          ),
+          // IconButton(
+          //   icon: Icon(
+          //     CustomIcons.grid,
+          //     size: 20.0,
+          //   ),
+          //   onPressed: () {},
+          // ),
           IconButton(
             icon: Icon(
               CustomIcons.search,
@@ -71,29 +72,39 @@ class AuthorizedProviders extends StatelessWidget {
 }
 
 Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
-  return Container(
-    child: ListTile(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    ProviderAccess(providerAccessRef: document.documentID)));
-        print(document.documentID);
-      },
-      title:
-          Text(document['company'], style: Theme.of(context).textTheme.subhead),
-      subtitle: Text(
-        document['datapoints'].toString() + ' datapoints shared',
-        style: TextStyle(height: 2.0),
+  if (document['company'] != 'company') {
+    return Container(
+      padding: EdgeInsets.only(left: 25.0),
+      child: Text(
+        'The providers that are authorized to access your data will be listed here',
+        style: TextStyle(height: 1.5),
       ),
-      // leading: ClipOval(
-      //   child: Image.asset(
-      //     'images/logos/${document['logo']}',
-      //     width: 50.0,
-      //   ),
-      // ),
-      trailing: Icon(Icons.arrow_forward_ios),
-    ),
-  );
+    );
+  } else {
+    return Container(
+      child: ListTile(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ProviderAccess(
+                        providerAccessRef: document.documentID,
+                      )));
+        },
+        title: Text(document['company'],
+            style: Theme.of(context).textTheme.subhead),
+        subtitle: Text(
+          document['datapoints'].toString() + ' datapoints shared',
+          style: TextStyle(height: 2.0),
+        ),
+        leading: ClipOval(
+          child: Image.asset(
+            'images/logos/${document['logo']}',
+            width: 50.0,
+          ),
+        ),
+        trailing: Icon(Icons.arrow_forward_ios),
+      ),
+    );
+  }
 }

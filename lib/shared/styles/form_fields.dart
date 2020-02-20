@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 const textInputDecoration = InputDecoration(
   labelStyle: TextStyle(
     color: Color(0xFF3F4441),
+    height: 0.5,
   ),
   // border: InputBorder.none,
   focusedBorder: OutlineInputBorder(

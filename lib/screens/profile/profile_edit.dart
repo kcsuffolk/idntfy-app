@@ -39,7 +39,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: <Widget>[
-                        SizedBox(height: 50.0),
+                        SizedBox(height: 70.0),
                         TextFormField(
                           initialValue: userData.address,
                           decoration: textInputDecoration.copyWith(
