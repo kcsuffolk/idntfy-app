@@ -24,7 +24,7 @@ class ProviderAccess extends StatelessWidget {
         children: <Widget>[
           ClipOval(
             child: Image.asset(
-              'images/logos/${document['logo']}',
+              'images/logos/${['logo']}',
               width: 85.0,
             ),
           ),
