@@ -4,9 +4,9 @@ import 'package:idntfy_app/models/user.dart';
 class DatabaseService {
   final String uid;
   final String docID;
-  final String providerRef;
+  final String providerID;
 
-  DatabaseService({this.uid, this.docID, this.providerRef});
+  DatabaseService({this.uid, this.docID, this.providerID});
 
   // user collection reference in Firestore
   final CollectionReference userCollection =
@@ -77,7 +77,7 @@ class DatabaseService {
     return userCollection
         .document(uid)
         .collection('providers')
-        .document(providerRef)
+        .document(providerID)
         .collection('providerAccess')
         .snapshots();
   }

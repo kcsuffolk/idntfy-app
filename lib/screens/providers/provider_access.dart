@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:idntfy_app/screens/providers/provider_access_list.dart';
 
 class ProviderAccess extends StatelessWidget {
-  final String providerRef;
+  final String providerID;
 
-  ProviderAccess({Key key, this.providerRef}) : super(key: key);
+  ProviderAccess({Key key, this.providerID}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class ProviderAccess extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: ProviderAccessList(providerRef: providerRef),
+            child: ProviderAccessList(providerID: providerID),
           ),
         ],
       ),
