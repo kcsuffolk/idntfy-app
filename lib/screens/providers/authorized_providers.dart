@@ -72,7 +72,7 @@ class AuthorizedProviders extends StatelessWidget {
 }
 
 Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
-  if (document['company'] != 'company') {
+  if (document.data.length < 1) {
     return Container(
       padding: EdgeInsets.only(left: 25.0),
       child: Text(
