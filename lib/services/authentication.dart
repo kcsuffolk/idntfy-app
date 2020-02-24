@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:idntfy_app/models/user.dart';
+import 'package:idntfy_app/models/user_data.dart';
 import 'package:idntfy_app/services/database.dart';
 
 class AuthService {

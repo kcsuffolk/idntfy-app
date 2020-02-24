@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/models/user.dart';
+import 'package:idntfy_app/models/user_data.dart';
 import 'package:idntfy_app/screens/authentication/authentication.dart';
 import 'package:idntfy_app/shared/classes/navigation.dart';
 import 'package:provider/provider.dart';

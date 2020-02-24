@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/models/user.dart';
+import 'package:idntfy_app/models/user_data.dart';
 import 'package:idntfy_app/services/database.dart';
 import 'package:idntfy_app/shared/classes/loading.dart';
 import 'package:provider/provider.dart';

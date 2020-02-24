@@ -4,7 +4,7 @@ import 'package:idntfy_app/screens/providers/provider_access.dart';
 import 'package:idntfy_app/services/database.dart';
 import 'package:idntfy_app/shared/classes/loading.dart';
 import 'package:provider/provider.dart';
-import 'package:idntfy_app/models/user.dart';
+import 'package:idntfy_app/models/user_data.dart';
 
 class ActivityList extends StatelessWidget {
   @override
