@@ -50,21 +50,12 @@ class DatabaseService {
     });
   }
 
-  // get user document stream
+  // get user document stream and map to custom user model
   Stream<UserData> get getUserDocuments {
-    return userCollection.document(uid).snapshots().map(_userDataFromSnapshot);
-  }
-
-  // method to map user document snapshot to customer user model
-  UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
-    return UserData(
-        uid: uid,
-        name: snapshot.data['name'],
-        address: snapshot.data['address'],
-        email: snapshot.data['email'],
-        phoneNumber: snapshot.data['phoneNumber']
-        // creditCard: snapshot.data['creditCard'],
-        );
+    return userCollection
+        .document(uid)
+        .snapshots()
+        .map((doc) => UserData.fromFirestore(doc));
   }
 
   // get provider collection stream

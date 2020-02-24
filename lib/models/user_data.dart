@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserData {
   final String uid;
   final String name;
@@ -14,6 +16,17 @@ class UserData {
     this.phoneNumber,
     // this.creditCard,
   });
+
+  factory UserData.fromFirestore(DocumentSnapshot document) {
+    Map userData = document.data;
+
+    return UserData(
+        uid: document.documentID,
+        name: userData['name'],
+        address: userData['address'],
+        email: userData['email'],
+        phoneNumber: userData['phoneNumber']);
+  }
 
   Map<String, dynamic> toMap() {
     return {
