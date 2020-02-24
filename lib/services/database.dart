@@ -50,6 +50,11 @@ class DatabaseService {
     });
   }
 
+  // get user document stream
+  Stream<UserData> get getUserDocuments {
+    return userCollection.document(uid).snapshots().map(_userDataFromSnapshot);
+  }
+
   // method to map user document snapshot to customer user model
   UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
     return UserData(
@@ -60,11 +65,6 @@ class DatabaseService {
         phoneNumber: snapshot.data['phoneNumber']
         // creditCard: snapshot.data['creditCard'],
         );
-  }
-
-  // get user document stream
-  Stream<UserData> get getUserDocuments {
-    return userCollection.document(uid).snapshots().map(_userDataFromSnapshot);
   }
 
   // get provider collection stream
