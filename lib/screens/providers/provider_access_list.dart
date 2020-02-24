@@ -6,17 +6,17 @@ import 'package:idntfy_app/shared/classes/loading.dart';
 import 'package:provider/provider.dart';
 
 class ProviderAccessList extends StatelessWidget {
-  final String providerAccessRef;
+  final String providerRef;
 
-  ProviderAccessList({Key key, this.providerAccessRef}) : super(key: key);
+  ProviderAccessList({Key key, this.providerRef}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final userAuthStream = Provider.of<User>(context);
     return StreamBuilder(
-        stream: DatabaseService(
-                uid: userAuthStream.uid, providerAccessRef: providerAccessRef)
-            .getProviderAccessCollection,
+        stream:
+            DatabaseService(uid: userAuthStream.uid, providerRef: providerRef)
+                .getProviderAccessCollection,
         builder: (context, snapshot) {
           if (!snapshot.hasData) return Loading();
           return ListView.separated(

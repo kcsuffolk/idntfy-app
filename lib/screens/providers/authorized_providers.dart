@@ -88,7 +88,7 @@ Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
               context,
               MaterialPageRoute(
                   builder: (context) => ProviderAccess(
-                        providerAccessRef: document.documentID,
+                        providerRef: document.documentID,
                       )));
         },
         title: Text(document['company'],
