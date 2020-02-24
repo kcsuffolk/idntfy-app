@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:idntfy_app/models/provider_data.dart';
 import 'package:idntfy_app/models/user_data.dart';
 
 class DatabaseService {
@@ -71,16 +70,6 @@ class DatabaseService {
   // get provider collection stream
   Stream get getProviderCollection {
     return userCollection.document(uid).collection('providers').snapshots();
-  }
-
-  // method to create provider id based on firebase document id
-  ProviderData _providerDocumentFromFirebase(DocumentSnapshot snapshot) {
-    return ProviderData(providerID: snapshot.documentID);
-  }
-
-  // get provider ID
-  Stream<ProviderData> get getProviderID {
-    return getProviderCollection.map(_providerDocumentFromFirebase);
   }
 
   // get provider access collection stream
