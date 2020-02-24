@@ -9,7 +9,7 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final userAuthStream = Provider.of<UserData>(context);
 
-    if (userAuthStream == null) {
+    if (userAuthStream.uid == null) {
       return Authentication();
     } else {
       return Navigation();
