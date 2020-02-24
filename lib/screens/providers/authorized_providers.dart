@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 class AuthorizedProviders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final userAuthStream = Provider.of<User>(context);
+    final userAuthStream = Provider.of<UserData>(context);
 
     return Scaffold(
       appBar: AppBar(
