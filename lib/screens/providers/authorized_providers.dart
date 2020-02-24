@@ -85,10 +85,12 @@ Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
       child: ListTile(
         onTap: () {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      ProviderAccess(providerID: document.documentID)));
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  ProviderAccess(providerID: document.documentID),
+            ),
+          );
         },
         title: Text(document['company'],
             style: Theme.of(context).textTheme.subhead),
