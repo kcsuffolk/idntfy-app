@@ -19,13 +19,13 @@ class _ProfileEditState extends State<ProfileEdit> {
 
   @override
   Widget build(BuildContext context) {
-    final userAuthStream = Provider.of<User>(context);
+    final userAuthStream = Provider.of<UserData>(context);
 
-    return StreamBuilder<User>(
+    return StreamBuilder<UserData>(
         stream: DatabaseService(uid: userAuthStream.uid).getUserDocuments,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            User userData = snapshot.data;
+            UserData userData = snapshot.data;
 
             return Scaffold(
               appBar: AppBar(

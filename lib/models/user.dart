@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class User {
+class UserData {
   final String uid;
   final String name;
   final String address;
@@ -8,7 +8,7 @@ class User {
   final String phoneNumber;
   // final String creditCard;
 
-  User({
+  UserData({
     this.uid,
     this.name,
     this.address,
@@ -17,10 +17,10 @@ class User {
     // this.creditCard,
   });
 
-  factory User.fromFirestore(DocumentSnapshot document) {
+  factory UserData.fromFirestore(DocumentSnapshot document) {
     Map userData = document.data;
 
-    return User(
+    return UserData(
         uid: document.documentID,
         name: userData['name'],
         address: userData['address'],

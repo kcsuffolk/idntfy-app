@@ -8,13 +8,13 @@ import 'package:provider/provider.dart';
 class ProfileList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final userAuthStream = Provider.of<User>(context);
+    final userAuthStream = Provider.of<UserData>(context);
 
-    return StreamBuilder<User>(
+    return StreamBuilder<UserData>(
         stream: DatabaseService(uid: userAuthStream.uid).getUserDocuments,
         builder: (context, snapshot) {
           if (!snapshot.hasData) return Loading();
-          User userData = snapshot.data;
+          UserData userData = snapshot.data;
 
           return ListView.separated(
             itemCount: userData.toMap().length,

@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final userAuthStream = Provider.of<User>(context);
+    final userAuthStream = Provider.of<UserData>(context);
 
     if (userAuthStream == null) {
       return Authentication();

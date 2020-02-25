@@ -9,7 +9,7 @@ import 'package:idntfy_app/models/user.dart';
 class ActivityList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final userAuthStream = Provider.of<User>(context);
+    final userAuthStream = Provider.of<UserData>(context);
     return StreamBuilder(
         stream: DatabaseService(uid: userAuthStream.uid).getProviderCollection,
         builder: (context, snapshot) {
