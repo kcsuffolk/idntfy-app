@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idntfy_app/models/user.dart';
 import 'package:idntfy_app/screens/authentication/register.dart';
 import 'package:idntfy_app/screens/authentication/sign_in.dart';
 import 'package:idntfy_app/screens/home/home.dart';
@@ -17,7 +18,7 @@ void main() => runApp(App());
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamProvider.value(
+    return StreamProvider<UserData>.value(
       value: AuthService().userState,
       child: MaterialApp(
         theme: appTheme(),
