@@ -10,7 +10,7 @@ class AuthService {
     return user != null ? UserData(uid: user.uid) : null;
   }
 
-  // method to listen to auth changes on user stream and map to custom user model
+  // listen to auth changes on user stream and map to custom user model
   Stream<UserData> get userState {
     return _auth.onAuthStateChanged.map(_userFromFirebaseUser);
   }
