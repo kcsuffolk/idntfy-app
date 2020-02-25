@@ -1,17 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class ProviderData {
+class Provider {
   final String providerID;
   final String company;
   final String domain;
   final String datapoints;
 
-  ProviderData({this.providerID, this.company, this.domain, this.datapoints});
+  Provider({this.providerID, this.company, this.domain, this.datapoints});
 
-  factory ProviderData.fromFirestore(DocumentSnapshot document) {
+  factory Provider.fromFirestore(DocumentSnapshot document) {
     Map data = document.data;
 
-    return ProviderData(
+    return Provider(
       providerID: document.documentID,
       company: data['company'],
       domain: data['domain'],

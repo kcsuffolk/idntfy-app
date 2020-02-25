@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:idntfy_app/models/user_data.dart';
+import 'package:idntfy_app/models/user.dart';
 
 class DatabaseService {
   final String uid;
@@ -51,11 +51,11 @@ class DatabaseService {
   }
 
   // get user document and map to custom user model
-  Stream<UserData> get getUserDocuments {
+  Stream<User> get getUserDocuments {
     return userCollection
         .document(uid)
         .snapshots()
-        .map((doc) => UserData.fromFirestore(doc));
+        .map((doc) => User.fromFirestore(doc));
   }
 
   // get provider collection

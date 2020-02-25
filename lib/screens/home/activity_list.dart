@@ -4,12 +4,12 @@ import 'package:idntfy_app/screens/providers/provider_access.dart';
 import 'package:idntfy_app/services/database.dart';
 import 'package:idntfy_app/shared/classes/loading.dart';
 import 'package:provider/provider.dart';
-import 'package:idntfy_app/models/user_data.dart';
+import 'package:idntfy_app/models/user.dart';
 
 class ActivityList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final userAuthStream = Provider.of<UserData>(context);
+    final userAuthStream = Provider.of<User>(context);
     return StreamBuilder(
         stream: DatabaseService(uid: userAuthStream.uid).getProviderCollection,
         builder: (context, snapshot) {

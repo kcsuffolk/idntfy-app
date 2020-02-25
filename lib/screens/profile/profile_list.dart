@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/models/user_data.dart';
+import 'package:idntfy_app/models/user.dart';
 import 'package:idntfy_app/screens/profile/profile_edit.dart';
 import 'package:idntfy_app/services/database.dart';
 import 'package:idntfy_app/shared/classes/loading.dart';
@@ -8,13 +8,13 @@ import 'package:provider/provider.dart';
 class ProfileList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final userAuthStream = Provider.of<UserData>(context);
+    final userAuthStream = Provider.of<User>(context);
 
-    return StreamBuilder<UserData>(
+    return StreamBuilder<User>(
         stream: DatabaseService(uid: userAuthStream.uid).getUserDocuments,
         builder: (context, snapshot) {
           if (!snapshot.hasData) return Loading();
-          UserData userData = snapshot.data;
+          User userData = snapshot.data;
 
           return ListView.separated(
             itemCount: userData.toMap().length,

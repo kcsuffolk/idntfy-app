@@ -4,13 +4,13 @@ import 'package:idntfy_app/screens/providers/provider_access.dart';
 import 'package:idntfy_app/services/database.dart';
 import 'package:idntfy_app/shared/classes/loading.dart';
 import 'package:idntfy_app/shared/styles/custom_icons_icons.dart';
-import 'package:idntfy_app/models/user_data.dart';
+import 'package:idntfy_app/models/user.dart';
 import 'package:provider/provider.dart';
 
 class AuthorizedProviders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final userAuthStream = Provider.of<UserData>(context);
+    final userAuthStream = Provider.of<User>(context);
 
     return Scaffold(
       appBar: AppBar(

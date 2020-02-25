@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/models/user_data.dart';
+import 'package:idntfy_app/models/user.dart';
 import 'package:idntfy_app/screens/profile/profile_list.dart';
 import 'package:idntfy_app/services/authentication.dart';
 import 'package:idntfy_app/services/database.dart';
@@ -11,13 +11,13 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userAuthStream = Provider.of<UserData>(context);
+    final userAuthStream = Provider.of<User>(context);
 
-    return StreamBuilder<UserData>(
+    return StreamBuilder<User>(
         stream: DatabaseService(uid: userAuthStream.uid).getUserDocuments,
         builder: (context, snapshot) {
           if (!snapshot.hasData) return Loading();
-          UserData userData = snapshot.data;
+          User userData = snapshot.data;
 
           return Scaffold(
             backgroundColor: Colors.white,

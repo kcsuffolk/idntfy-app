@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/models/user_data.dart';
+import 'package:idntfy_app/models/user.dart';
 import 'package:idntfy_app/services/database.dart';
 import 'package:idntfy_app/shared/classes/loading.dart';
 import 'package:idntfy_app/shared/styles/form_fields.dart';
@@ -19,13 +19,13 @@ class _ProfileEditState extends State<ProfileEdit> {
 
   @override
   Widget build(BuildContext context) {
-    final userAuthStream = Provider.of<UserData>(context);
+    final userAuthStream = Provider.of<User>(context);
 
-    return StreamBuilder<UserData>(
+    return StreamBuilder<User>(
         stream: DatabaseService(uid: userAuthStream.uid).getUserDocuments,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            UserData userData = snapshot.data;
+            User userData = snapshot.data;
 
             return Scaffold(
               appBar: AppBar(

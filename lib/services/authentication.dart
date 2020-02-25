@@ -1,17 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:idntfy_app/models/user_data.dart';
+import 'package:idntfy_app/models/user.dart';
 import 'package:idntfy_app/services/database.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // method to create custom user based on firebase user
-  UserData _userFromFirebaseUser(FirebaseUser user) {
-    return user != null ? UserData(uid: user.uid) : null;
+  User _userFromFirebaseUser(FirebaseUser user) {
+    return user != null ? User(uid: user.uid) : null;
   }
 
   // listen to auth changes on user stream and map to custom user model
-  Stream<UserData> get userState {
+  Stream<User> get userState {
     return _auth.onAuthStateChanged.map(_userFromFirebaseUser);
   }
 
