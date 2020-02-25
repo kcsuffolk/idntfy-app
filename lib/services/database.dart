@@ -73,13 +73,12 @@ class DatabaseService {
   }
 
   // get provider access document
-  Stream<DocumentSnapshot> get getProviderAccessCollection {
+  Stream<QuerySnapshot> get getProviderAccessCollection {
     return userCollection
         .document(uid)
         .collection('providers')
         .document(providerID)
         .collection('providerAccess')
-        .document(providerAccessRef)
         .snapshots();
   }
 }
