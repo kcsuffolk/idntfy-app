@@ -72,7 +72,7 @@ class DatabaseService {
         .snapshots();
   }
 
-  // get provider access collection
+  // get provider access document
   Stream<DocumentSnapshot> get getProviderAccessCollection {
     return userCollection
         .document(uid)
