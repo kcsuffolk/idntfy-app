@@ -50,7 +50,7 @@ class DatabaseService {
     });
   }
 
-  // get user document stream and map to custom user model
+  // get user document and map to custom user model
   Stream<UserData> get getUserDocuments {
     return userCollection
         .document(uid)
@@ -58,13 +58,13 @@ class DatabaseService {
         .map((doc) => UserData.fromFirestore(doc));
   }
 
-  // get provider collection stream
-  Stream get getProviderCollection {
+  // get provider collection
+  Stream<QuerySnapshot> get getProviderCollection {
     return userCollection.document(uid).collection('providers').snapshots();
   }
 
-  // get provider access collection stream
-  Stream get getProviderAccessCollection {
+  // get provider access collection
+  Stream<QuerySnapshot> get getProviderAccessCollection {
     return userCollection
         .document(uid)
         .collection('providers')

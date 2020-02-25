@@ -3,8 +3,10 @@ import 'package:idntfy_app/screens/providers/provider_access_list.dart';
 
 class ProviderAccess extends StatelessWidget {
   final String providerID;
+  final String providerAccessRef;
 
-  ProviderAccess({Key key, this.providerID}) : super(key: key);
+  ProviderAccess({Key key, this.providerID, this.providerAccessRef})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
