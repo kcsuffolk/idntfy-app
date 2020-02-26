@@ -10,26 +10,9 @@ class Providers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userAuthStream = Provider.of<UserData>(context);
-    final providers = Provider.of<List<ProviderData>>(context) ?? [];
 
-    providerID() {
-      for (var doc in providers) {
-        return doc.providerID;
-      }
-    }
-
-    print(providerID());
-
-    return MultiProvider(
-      providers: [
-        StreamProvider<List<ProviderData>>.value(
-            value:
-                DatabaseService(uid: userAuthStream.uid).getProviderCollection),
-        StreamProvider<List<UserData>>.value(
-            value: DatabaseService(
-                    uid: userAuthStream.uid, providerID: providerID())
-                .getProviderAccessCollection)
-      ],
+    return StreamProvider<List<ProviderData>>.value(
+      value: DatabaseService(uid: userAuthStream.uid).getProviderCollection,
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
