@@ -6,16 +6,18 @@ class UserData {
   final String address;
   final String email;
   final String phoneNumber;
+  final String providerAccessRef;
   // final String creditCard;
 
-  UserData({
-    this.uid,
-    this.name,
-    this.address,
-    this.email,
-    this.phoneNumber,
-    // this.creditCard,
-  });
+  UserData(
+      {this.uid,
+      this.name,
+      this.address,
+      this.email,
+      this.phoneNumber,
+      this.providerAccessRef
+      // this.creditCard,
+      });
 
   factory UserData.fromFirestore(DocumentSnapshot document) {
     Map userData = document.data;

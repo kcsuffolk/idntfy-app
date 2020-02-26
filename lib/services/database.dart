@@ -96,6 +96,7 @@ class DatabaseService {
 List<UserData> _providerAccessFromSnapshot(QuerySnapshot snapshot) {
   return snapshot.documents.map((doc) {
     return UserData(
+        providerAccessRef: doc.documentID,
         name: doc.data['name'] ?? '',
         address: doc.data['address'] ?? '',
         email: doc.data['email'] ?? '',
