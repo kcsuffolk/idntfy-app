@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:idntfy_app/models/provider.dart';
 import 'package:idntfy_app/models/user.dart';
 
 class DatabaseService {
@@ -59,20 +60,28 @@ class DatabaseService {
   }
 
   // get provider collection
-  Stream<QuerySnapshot> get getProviderCollection {
-    return userCollection.document(uid).collection('providers').snapshots();
-  }
-
-  // get provider document
-  Stream<DocumentSnapshot> get getProviderDocument {
+  Stream<List<ProviderData>> get getProviderCollection {
     return userCollection
         .document(uid)
         .collection('providers')
-        .document(providerID)
-        .snapshots();
+        .snapshots()
+        .map(_providerListFromSnapshot);
   }
 
-  // get provider access document
+  // method to map provider collection to provider data model
+  List<ProviderData> _providerListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return ProviderData(
+        providerID: doc.documentID,
+        company: doc.data['company'] ?? '',
+        domain: doc.data['domain'] ?? '',
+        logo: doc.data['logo'] ?? '',
+        datapoints: doc.data['datapoints'] ?? '',
+      );
+    }).toList();
+  }
+
+  // get provider access collection
   Stream<QuerySnapshot> get getProviderAccessCollection {
     return userCollection
         .document(uid)
