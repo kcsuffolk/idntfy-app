@@ -72,22 +72,33 @@ class DatabaseService {
   List<ProviderData> _providerListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return ProviderData(
-        providerID: doc.documentID,
-        company: doc.data['company'] ?? '',
-        domain: doc.data['domain'] ?? '',
-        logo: doc.data['logo'] ?? '',
-        datapoints: doc.data['datapoints'] ?? '',
-      );
+          providerID: doc.documentID,
+          company: doc.data['company'] ?? '',
+          domain: doc.data['domain'] ?? '',
+          logo: doc.data['logo'] ?? '',
+          datapoints: doc.data['datapoints'] ?? '');
     }).toList();
   }
 
   // get provider access collection
-  Stream<QuerySnapshot> get getProviderAccessCollection {
+  Stream<List<UserData>> get getProviderAccessCollection {
     return userCollection
         .document(uid)
         .collection('providers')
         .document(providerID)
         .collection('providerAccess')
-        .snapshots();
+        .snapshots()
+        .map(_providerAccessFromSnapshot);
   }
+}
+
+// method to map provider access collection to user data model
+List<UserData> _providerAccessFromSnapshot(QuerySnapshot snapshot) {
+  return snapshot.documents.map((doc) {
+    return UserData(
+        name: doc.data['name'] ?? '',
+        address: doc.data['address'] ?? '',
+        email: doc.data['email'] ?? '',
+        phoneNumber: doc.data['phoneNumber'] ?? '');
+  }).toList();
 }
