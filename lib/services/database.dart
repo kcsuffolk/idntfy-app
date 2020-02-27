@@ -43,7 +43,8 @@ class DatabaseService {
         .collection('providers')
         .document(docID)
         .collection('providerAccess')
-        .add({
+        .document(uid)
+        .setData({
       'name': name,
       'email': email,
       'address': address,
