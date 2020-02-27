@@ -8,7 +8,9 @@ class ProviderList extends StatelessWidget {
   Widget build(BuildContext context) {
     final providers = Provider.of<List<ProviderData>>(context) ?? [];
 
-    if (providers.length > 1) {
+    print(providers);
+
+    if (providers.length != 0) {
       return ListView.builder(
         itemBuilder: (context, index) {
           return ProviderListTile(provider: providers[index]);
