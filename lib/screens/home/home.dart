@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:idntfy_app/models/provider.dart';
 import 'package:idntfy_app/models/user.dart';
-import 'package:idntfy_app/screens/home/activity_list.dart';
+import 'package:idntfy_app/screens/home/provider_list.dart';
 import 'package:idntfy_app/services/database.dart';
+import 'package:idntfy_app/shared/styles/custom_icons_icons.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
@@ -16,7 +17,10 @@ class Home extends StatelessWidget {
         appBar: AppBar(
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.important_devices),
+              icon: Icon(
+                CustomIcons.search,
+                size: 20.0,
+              ),
               onPressed: () {
                 Navigator.pushNamed(context, '/providers');
               },
@@ -30,12 +34,12 @@ class Home extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(top: 20.0, bottom: 30.0, left: 25.0),
               child: Text(
-                'Your Activity',
+                'Authorized Providers',
                 style: Theme.of(context).textTheme.title,
               ),
             ),
             Expanded(
-              child: ActivityList(),
+              child: ProviderList(),
             ),
           ],
         ),

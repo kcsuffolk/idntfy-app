@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idntfy_app/models/provider.dart';
-import 'package:idntfy_app/screens/providers/provider_access.dart';
+import 'package:idntfy_app/screens/provider_access/provider_access.dart';
 // import 'package:provider/provider.dart';
 
 class ProviderListTile extends StatelessWidget {
@@ -15,8 +15,10 @@ class ProviderListTile extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>
-                ProviderAccess(providerID: provider.providerID),
+            builder: (context) => ProviderAccess(
+                providerID: provider.providerID,
+                providerName: provider.company,
+                providerLogo: provider.logo),
           ),
         );
       },

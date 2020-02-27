@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idntfy_app/models/provider.dart';
-import 'package:idntfy_app/screens/providers/provider_list_tile.dart';
+import 'package:idntfy_app/screens/home/provider_list_tile.dart';
 import 'package:provider/provider.dart';
 
 class ProviderList extends StatelessWidget {
@@ -8,22 +8,21 @@ class ProviderList extends StatelessWidget {
   Widget build(BuildContext context) {
     final providers = Provider.of<List<ProviderData>>(context) ?? [];
 
-    print(providers);
-
-    if (providers.length != 0) {
-      return ListView.builder(
-        itemBuilder: (context, index) {
-          return ProviderListTile(provider: providers[index]);
-        },
-        itemCount: providers.length,
-      );
-    } else {
+    if (providers.length == 0) {
       return Container(
         padding: EdgeInsets.only(left: 25.0),
         child: Text(
           'All providers that have access to your data will be displayed here',
           style: TextStyle(height: 1.5),
         ),
+      );
+    } else {
+      return ListView.separated(
+        itemBuilder: (context, index) {
+          return ProviderListTile(provider: providers[index]);
+        },
+        separatorBuilder: (context, index) => Divider(thickness: 1),
+        itemCount: providers.length,
       );
     }
   }
