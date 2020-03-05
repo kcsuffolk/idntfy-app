@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:idntfy_app/models/user.dart';
 import 'package:idntfy_app/screens/provider_access/provider_access_list_tile.dart';
+import 'package:idntfy_app/shared/classes/loading.dart';
 import 'package:provider/provider.dart';
 
 class ProviderAccessList extends StatelessWidget {
@@ -8,6 +9,7 @@ class ProviderAccessList extends StatelessWidget {
   Widget build(BuildContext context) {
     final providerAccess = Provider.of<UserData>(context);
 
+    if (providerAccess == null) return Loading();
     return ListView.separated(
         itemBuilder: (context, index) {
           return ProviderAccessListTile(

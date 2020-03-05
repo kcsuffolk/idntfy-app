@@ -76,8 +76,7 @@ class DatabaseService {
           providerID: doc.documentID,
           company: doc.data['company'] ?? '',
           domain: doc.data['domain'] ?? '',
-          logo: doc.data['logo'] ?? '',
-          datapoints: doc.data['datapoints'] ?? '');
+          logo: doc.data['logo'] ?? '');
     }).toList();
   }
 

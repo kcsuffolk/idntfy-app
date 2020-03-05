@@ -45,6 +45,23 @@ class ProviderAccess extends StatelessWidget {
             Expanded(
               child: ProviderAccessList(),
             ),
+            SizedBox(
+              width: 300.0,
+              height: 55.0,
+              child: FlatButton(
+                color: Color(0xFF43D098),
+                colorBrightness: Brightness.dark,
+                child: Text(
+                  'Revoke Access',
+                  style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold),
+                ),
+                onPressed: () {},
+              ),
+            ),
+            SizedBox(height: 50.0),
           ],
         ),
       ),
