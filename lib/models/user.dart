@@ -32,6 +32,7 @@ class UserData {
 
   Map<String, dynamic> toMap() {
     return {
+      'Name': name,
       'Address': address,
       'Email Address': email,
       'Phone Number': phoneNumber,

@@ -81,8 +81,8 @@ class DatabaseService {
     }).toList();
   }
 
-  // get provider access document
-  Stream<DocumentSnapshot> get getProviderAccessDocument {
+  // get provider access document to count shared datapoints
+  Stream<DocumentSnapshot> get getProviderAccessDocumentCount {
     return userCollection
         .document(uid)
         .collection('providers')
@@ -92,26 +92,15 @@ class DatabaseService {
         .snapshots();
   }
 
-  // get provider access collection
-//   Stream<List<UserData>> get getProviderAccessCollection {
-//     return userCollection
-//         .document(uid)
-//         .collection('providers')
-//         .document(providerID)
-//         .collection('providerAccess')
-//         .snapshots()
-//         .map(_providerAccessFromSnapshot);
-//   }
-// }
-
-// method to map provider access collection to user data model
-// List<UserData> _providerAccessFromSnapshot(QuerySnapshot snapshot) {
-//   return snapshot.documents.map((doc) {
-//     return UserData(
-//         providerAccessRef: doc.documentID,
-//         name: doc.data['name'] ?? '',
-//         address: doc.data['address'] ?? '',
-//         email: doc.data['email'] ?? '',
-//         phoneNumber: doc.data['phoneNumber'] ?? '');
-//   }).toList();
+  // get provider access document
+  Stream<UserData> get getProviderAccessDocument {
+    return userCollection
+        .document(uid)
+        .collection('providers')
+        .document(providerID)
+        .collection('providerAccess')
+        .document(providerAccessRef)
+        .snapshots()
+        .map((doc) => UserData.fromFirestore(doc));
+  }
 }

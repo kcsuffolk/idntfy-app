@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:idntfy_app/models/user.dart';
 import 'package:idntfy_app/screens/provider_access/provider_access_list.dart';
@@ -16,7 +15,7 @@ class ProviderAccess extends StatelessWidget {
   Widget build(BuildContext context) {
     final userAuthStream = Provider.of<UserData>(context);
 
-    return StreamProvider<DocumentSnapshot>.value(
+    return StreamProvider<UserData>.value(
       value: DatabaseService(
               uid: userAuthStream.uid,
               providerID: providerID,

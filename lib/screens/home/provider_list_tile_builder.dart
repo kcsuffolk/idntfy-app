@@ -20,7 +20,7 @@ class ProviderListTileBuilder extends StatelessWidget {
               uid: userAuthStream.uid,
               providerID: provider.providerID,
               providerAccessRef: userAuthStream.uid)
-          .getProviderAccessDocument,
+          .getProviderAccessDocumentCount,
       child: ProviderListTile(provider: provider),
     );
   }

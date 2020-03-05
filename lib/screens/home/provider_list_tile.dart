@@ -12,6 +12,7 @@ class ProviderListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final providerAccess = Provider.of<DocumentSnapshot>(context);
+    final providerAccessCount = providerAccess.data.length.toString();
 
     return ListTile(
       onTap: () {
@@ -27,7 +28,7 @@ class ProviderListTile extends StatelessWidget {
       },
       title: Text(provider.company, style: Theme.of(context).textTheme.subhead),
       subtitle: Text(
-        providerAccess.data.length.toString() + ' datapoints shared',
+        providerAccessCount + ' datapoints shared',
         style: TextStyle(height: 2.0),
       ),
       leading: ClipOval(
