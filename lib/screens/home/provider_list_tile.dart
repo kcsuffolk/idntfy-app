@@ -1,7 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:idntfy_app/models/provider.dart';
 import 'package:idntfy_app/screens/provider_access/provider_access.dart';
-// import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
 
 class ProviderListTile extends StatelessWidget {
   final ProviderData provider;
@@ -10,6 +11,8 @@ class ProviderListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final providerAccess = Provider.of<DocumentSnapshot>(context);
+
     return ListTile(
       onTap: () {
         Navigator.push(
@@ -24,7 +27,7 @@ class ProviderListTile extends StatelessWidget {
       },
       title: Text(provider.company, style: Theme.of(context).textTheme.subhead),
       subtitle: Text(
-        provider.datapoints.toString() + ' datapoints shared',
+        providerAccess.data.length.toString() + ' datapoints shared',
         style: TextStyle(height: 2.0),
       ),
       leading: ClipOval(

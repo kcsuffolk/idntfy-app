@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:idntfy_app/models/user.dart';
 
 class ProviderAccessListTile extends StatelessWidget {
   final String providerAccessData;

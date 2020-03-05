@@ -8,8 +8,6 @@ class ProviderAccessList extends StatelessWidget {
   Widget build(BuildContext context) {
     final providerAccess = Provider.of<DocumentSnapshot>(context);
 
-    print(providerAccess.data);
-
     return ListView.separated(
         itemBuilder: (context, index) {
           return ProviderAccessListTile(
