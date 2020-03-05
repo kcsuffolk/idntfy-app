@@ -9,13 +9,29 @@ class ProviderAccessListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(providerAccessDataKey ?? 'not sharing',
-          style: Theme.of(context).textTheme.subhead),
-      subtitle: Text(
-        providerAccessDataValue ?? 'not sharing',
-        style: TextStyle(height: 2.0),
-      ),
-    );
+    if (providerAccessDataValue == null) {
+      return ListTile(
+        title: Text(providerAccessDataKey,
+            style: Theme.of(context).textTheme.subhead),
+        subtitle: Text(
+          'not shared',
+          style: TextStyle(height: 2.0),
+        ),
+        trailing: Icon(Icons.close, color: Colors.red),
+      );
+    } else {
+      return ListTile(
+        title: Text(providerAccessDataKey,
+            style: Theme.of(context).textTheme.subhead),
+        subtitle: Text(
+          providerAccessDataValue,
+          style: TextStyle(height: 2.0),
+        ),
+        trailing: Icon(
+          Icons.check,
+          color: Color(0xFF43D098),
+        ),
+      );
+    }
   }
 }
