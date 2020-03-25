@@ -28,10 +28,13 @@ class DatabaseService {
   // method to create provider data in user collection
   Future updateUserProviderData(
       String company, String domain, String datapoints) async {
-    return await userCollection.document(uid).collection('providers').add({
+    return await userCollection
+        .document(uid)
+        .collection('providers')
+        .document(providerID)
+        .setData({
       'company': company,
       'domain': domain,
-      'datapoints': datapoints,
     });
   }
 
@@ -101,5 +104,15 @@ class DatabaseService {
         .document(providerAccessRef)
         .snapshots()
         .map((doc) => UserData.fromFirestore(doc));
+  }
+
+  final CollectionReference providerCollection =
+      Firestore.instance.collection('providers');
+
+  Stream<ProviderData> get getProviderData {
+    return providerCollection
+        .document(providerID)
+        .snapshots()
+        .map((doc) => ProviderData.fromFirestore(doc));
   }
 }

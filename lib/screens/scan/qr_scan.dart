@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idntfy_app/screens/scan/provider_request.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class QrScan extends StatefulWidget {
@@ -8,10 +9,13 @@ class QrScan extends StatefulWidget {
 
 class _QrScanState extends State<QrScan> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  var qrText = "";
+  var providerID = "";
   QRViewController controller;
   @override
   Widget build(BuildContext context) {
+    if (providerID != '') {
+      return ProviderRequest(providerID: providerID);
+    }
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -25,7 +29,7 @@ class _QrScanState extends State<QrScan> {
           Expanded(
             flex: 1,
             child: Center(
-              child: Text('Scan result: $qrText'),
+              child: Text('Scan result: $providerID'),
             ),
           )
         ],
@@ -37,7 +41,7 @@ class _QrScanState extends State<QrScan> {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
       setState(() {
-        qrText = scanData;
+        providerID = scanData;
       });
     });
   }
