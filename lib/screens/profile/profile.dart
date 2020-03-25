@@ -20,7 +20,6 @@ class Profile extends StatelessWidget {
           UserData userData = snapshot.data;
 
           return Scaffold(
-            backgroundColor: Colors.white,
             body: Column(
               children: <Widget>[
                 SizedBox(height: 55.0),
