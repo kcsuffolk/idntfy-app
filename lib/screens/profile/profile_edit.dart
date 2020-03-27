@@ -75,14 +75,6 @@ class _ProfileEditState extends State<ProfileEdit> {
                             setState(() => _currentPhoneNumber = val);
                           },
                         ),
-                        // SizedBox(height: 20.0),
-                        // TextFormField(
-                        //   decoration: textInputDecoration.copyWith(labelText: 'Address'),
-                        //   validator: (val) => val.isEmpty ? 'Enter your Addres' : null,
-                        //   onChanged: (val) {
-                        //     setState(() => _currentAddress = val);
-                        //   },
-                        // ),
                         SizedBox(height: 20.0),
                         SizedBox(
                           width: 300.0,
