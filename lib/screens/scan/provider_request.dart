@@ -66,7 +66,11 @@ class ProviderRequest extends StatelessWidget {
                                 providerAccess.email,
                                 providerAccess.address,
                                 providerAccess.phoneNumber);
-                        print('uploaded');
+                        Navigator.pushNamed(context, '/confirmation');
+                        Future.delayed(Duration(milliseconds: 1500), () {
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                              '/navigation', (Route<dynamic> route) => false);
+                        });
                       },
                     ),
                   ),
