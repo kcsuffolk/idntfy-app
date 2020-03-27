@@ -26,8 +26,7 @@ class DatabaseService {
   }
 
   // method to create provider data in user collection
-  Future updateUserProviderData(
-      String company, String domain, String datapoints) async {
+  Future updateUserProviderData(String company, String domain) async {
     return await userCollection
         .document(uid)
         .collection('providers')

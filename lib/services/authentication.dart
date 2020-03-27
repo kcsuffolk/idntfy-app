@@ -27,7 +27,7 @@ class AuthService {
       await DatabaseService(uid: user.uid).updateUserData(
           name, email, 'Enter your Address', 'Enter your Phone Number');
       final providerData = await DatabaseService(uid: user.uid)
-          .updateUserProviderData('company', 'domain', 'datapoints');
+          .updateUserProviderData('company', 'domain');
       await DatabaseService(uid: user.uid).updateUserProviderAccess(
           providerData.documentID, name, email, 'address', 'phoneNumber');
       return _userFromFirebaseUser(user);

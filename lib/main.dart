@@ -27,7 +27,6 @@ class App extends StatelessWidget {
           '/home': (context) => Home(),
           '/scan': (context) => QrScan(),
           '/profile': (context) => Profile(),
-          // '/providers': (context) => Providers(),
           '/provideraccess': (context) => ProviderAccess(),
           '/signin': (context) => SignIn(),
           '/register': (context) => Register(),
