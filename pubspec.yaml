@@ -28,6 +28,7 @@ dependencies:
   firebase_auth: ^0.15.3+1
   provider: ^4.0.2
   flutter_spinkit: ^4.1.1
+  flutter_launcher_icons: ^0.7.4
 
 
 dev_dependencies:
@@ -84,3 +85,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_icons:
+  image_path: 'images/logos/logo.png'
+  # android: true
+  ios: true
