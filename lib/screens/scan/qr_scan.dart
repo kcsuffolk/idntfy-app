@@ -9,7 +9,7 @@ class QrScan extends StatefulWidget {
 
 class _QrScanState extends State<QrScan> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  var providerID = "ef0OdS3nxudKQ0X9o6Qr"; // Remove placeholder ID
+  var providerID = '';
   QRViewController controller;
   @override
   Widget build(BuildContext context) {

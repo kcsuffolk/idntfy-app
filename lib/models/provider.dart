@@ -14,6 +14,7 @@ class ProviderData {
     return ProviderData(
       company: providerData['company'],
       domain: providerData['domain'],
+      logo: providerData['logo'],
     );
   }
 }

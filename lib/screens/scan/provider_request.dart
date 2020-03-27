@@ -3,6 +3,7 @@ import 'package:idntfy_app/models/provider.dart';
 import 'package:idntfy_app/models/user.dart';
 import 'package:idntfy_app/screens/scan/provider_data_request.dart';
 import 'package:idntfy_app/services/database.dart';
+import 'package:idntfy_app/shared/classes/loading.dart';
 import 'package:provider/provider.dart';
 
 class ProviderRequest extends StatelessWidget {
@@ -13,12 +14,14 @@ class ProviderRequest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userAuthStream = Provider.of<UserData>(context);
-    final providerAccess = Provider.of<UserData>(context);
+    final userData = Provider.of<UserData>(context);
 
     return StreamBuilder<ProviderData>(
         stream: DatabaseService(providerID: providerID).getProviderData,
         builder: (context, snapshot) {
           ProviderData providerData = snapshot.data;
+
+          if (!snapshot.hasData) return Loading();
 
           return Scaffold(
             body: Center(
@@ -26,7 +29,8 @@ class ProviderRequest extends StatelessWidget {
                 children: <Widget>[
                   SizedBox(height: 108.0),
                   ClipOval(
-                    child: Image.asset('images/logos/facemag.png', width: 42.5),
+                    child: Image.asset('images/logos/${providerData.logo}',
+                        width: 42.5),
                   ),
                   SizedBox(height: 34.0),
                   Container(
@@ -56,16 +60,16 @@ class ProviderRequest extends StatelessWidget {
                       onPressed: () {
                         DatabaseService(
                                 uid: userAuthStream.uid, providerID: providerID)
-                            .updateUserProviderData(
-                                providerData.company, providerData.domain);
+                            .updateUserProviderData(providerData.company,
+                                providerData.domain, providerData.logo);
                         DatabaseService(
                                 uid: userAuthStream.uid, providerID: providerID)
                             .updateUserProviderAccess(
                                 providerID,
-                                providerAccess.name,
-                                providerAccess.email,
-                                providerAccess.address,
-                                providerAccess.phoneNumber);
+                                userData.name,
+                                userData.email,
+                                userData.address,
+                                userData.phoneNumber);
                         Navigator.pushNamed(context, '/confirmation');
                         Future.delayed(Duration(milliseconds: 1500), () {
                           Navigator.of(context).pushNamedAndRemoveUntil(
