@@ -30,7 +30,7 @@ class Profile extends StatelessWidget {
                 SizedBox(height: 15.0),
                 Text(
                   userData.name,
-                  style: Theme.of(context).textTheme.subtitle,
+                  style: Theme.of(context).textTheme.subtitle2,
                 ),
                 SizedBox(height: 15.0),
                 Row(

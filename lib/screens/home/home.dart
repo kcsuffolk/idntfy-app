@@ -35,7 +35,7 @@ class Home extends StatelessWidget {
               margin: EdgeInsets.only(top: 20.0, bottom: 30.0, left: 25.0),
               child: Text(
                 'Authorized Providers',
-                style: Theme.of(context).textTheme.title,
+                style: Theme.of(context).textTheme.headline6,
               ),
             ),
             Expanded(

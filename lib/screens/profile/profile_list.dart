@@ -21,7 +21,7 @@ class ProfileList extends StatelessWidget {
             itemBuilder: (context, index) {
               return ListTile(
                 title: Text(userData.toMap().keys.toList()[index],
-                    style: Theme.of(context).textTheme.subhead),
+                    style: Theme.of(context).textTheme.subtitle1),
                 subtitle: Text(userData.toMap().values.toList()[index],
                     style: TextStyle(height: 2.0)),
                 onTap: () {

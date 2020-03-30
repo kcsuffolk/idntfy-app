@@ -12,7 +12,7 @@ class ProviderAccessListTile extends StatelessWidget {
     if (providerAccessDataValue == null) {
       return ListTile(
         title: Text(providerAccessDataKey,
-            style: Theme.of(context).textTheme.subhead),
+            style: Theme.of(context).textTheme.subtitle1),
         subtitle: Text(
           'not shared',
           style: TextStyle(height: 2.0),
@@ -22,7 +22,7 @@ class ProviderAccessListTile extends StatelessWidget {
     } else {
       return ListTile(
         title: Text(providerAccessDataKey,
-            style: Theme.of(context).textTheme.subhead),
+            style: Theme.of(context).textTheme.subtitle1),
         subtitle: Text(
           providerAccessDataValue,
           style: TextStyle(height: 2.0),

@@ -18,7 +18,7 @@ class _AuthenticationState extends State<Authentication> {
             padding: EdgeInsets.symmetric(horizontal: 40.0),
             child: Text(
               'You decide what you share.',
-              style: Theme.of(context).textTheme.display1,
+              style: Theme.of(context).textTheme.headline4,
               textAlign: TextAlign.center,
             ),
           ),

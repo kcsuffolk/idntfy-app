@@ -30,7 +30,7 @@ class ProviderAccess extends StatelessWidget {
           ),
           title: Text(
             'Provider Access',
-            style: Theme.of(context).textTheme.subtitle,
+            style: Theme.of(context).textTheme.subtitle2,
           ),
         ),
         body: Column(

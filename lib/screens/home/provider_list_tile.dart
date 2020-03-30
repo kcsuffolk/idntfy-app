@@ -27,7 +27,8 @@ class ProviderListTile extends StatelessWidget {
           ),
         );
       },
-      title: Text(provider.company, style: Theme.of(context).textTheme.subhead),
+      title:
+          Text(provider.company, style: Theme.of(context).textTheme.subtitle1),
       subtitle: Text(
         providerAccess.data.length.toString() + ' datapoints shared',
         style: TextStyle(height: 2.0),

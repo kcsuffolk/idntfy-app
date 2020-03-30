@@ -7,29 +7,29 @@ ThemeData appTheme() {
     scaffoldBackgroundColor: Colors.white,
     fontFamily: 'Inter',
     textTheme: TextTheme(
-      title: TextStyle(
+      headline6: TextStyle(
         fontFamily: 'Poppins',
         fontSize: 26.0,
         fontWeight: FontWeight.bold,
         color: Color(0xFF101D15),
       ),
-      subtitle: TextStyle(
+      subtitle2: TextStyle(
         fontFamily: 'Poppins',
         fontSize: 19.0,
         fontWeight: FontWeight.w600,
         color: Color(0xFF101D15),
       ),
-      subhead: TextStyle(
+      subtitle1: TextStyle(
         fontSize: 16.0,
         fontWeight: FontWeight.w600,
         color: Color(0xFF101D15),
       ),
-      display1: TextStyle(
+      headline4: TextStyle(
         fontFamily: 'Poppins',
         fontWeight: FontWeight.bold,
         color: Color(0xFF101D15),
       ),
-      body1: TextStyle(
+      bodyText2: TextStyle(
         fontSize: 16.0,
         color: Color(0xFF3F4441),
       ),

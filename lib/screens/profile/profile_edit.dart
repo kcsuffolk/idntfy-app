@@ -30,7 +30,7 @@ class _ProfileEditState extends State<ProfileEdit> {
             return Scaffold(
               appBar: AppBar(
                   title: Text('Account Settings',
-                      style: Theme.of(context).textTheme.subtitle)),
+                      style: Theme.of(context).textTheme.subtitle2)),
               body: Form(
                 key: _formKey,
                 child: Padding(

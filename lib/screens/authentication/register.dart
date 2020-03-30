@@ -27,7 +27,7 @@ class _RegisterState extends State<Register> {
             appBar: AppBar(
               elevation: 0.0,
               title: Text('Create your account',
-                  style: Theme.of(context).textTheme.subtitle),
+                  style: Theme.of(context).textTheme.subtitle2),
             ),
             body: Form(
               key: _formKey,

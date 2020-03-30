@@ -26,7 +26,7 @@ class _SignInState extends State<SignIn> {
             appBar: AppBar(
               elevation: 0.0,
               title:
-                  Text('Sign in', style: Theme.of(context).textTheme.subtitle),
+                  Text('Sign in', style: Theme.of(context).textTheme.subtitle2),
             ),
             body: Form(
               key: _formKey,
