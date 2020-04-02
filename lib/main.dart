@@ -21,6 +21,7 @@ class App extends StatelessWidget {
     return StreamProvider<UserData>.value(
       value: AuthService().userState,
       child: MaterialApp(
+        debugShowCheckedModeBanner: false, // Remove this line for productive
         theme: appTheme(),
         initialRoute: '/',
         routes: {
