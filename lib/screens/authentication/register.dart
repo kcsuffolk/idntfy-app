@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:idntfy_app/services/authentication.dart';
 import 'package:idntfy_app/shared/classes/loading.dart';
@@ -24,11 +25,6 @@ class _RegisterState extends State<Register> {
     return loading
         ? Loading()
         : Scaffold(
-            appBar: AppBar(
-              elevation: 0.0,
-              title: Text('Create your account',
-                  style: Theme.of(context).textTheme.subtitle2),
-            ),
             body: Form(
               key: _formKey,
               child: SingleChildScrollView(
@@ -103,6 +99,32 @@ class _RegisterState extends State<Register> {
                         ),
                       ),
                       SizedBox(height: 15.0),
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'Already have an Account? ',
+                              style: Theme.of(context).textTheme.bodyText1,
+                            ),
+                            TextSpan(
+                              text: 'Sign in',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1
+                                  .copyWith(
+                                      color: Color(0xFF43D098),
+                                      fontWeight: FontWeight.bold),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () => Navigator.popAndPushNamed(
+                                    context, '/signin'),
+                            )
+                          ],
+                        ),
+                      ),
+                      Text(
+                        error,
+                        style: TextStyle(color: Colors.red),
+                      ),
                       Text(
                         error,
                         style: TextStyle(color: Colors.red),

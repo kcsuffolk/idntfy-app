@@ -25,14 +25,14 @@ class App extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => Wrapper(),
+          '/confirmation': (context) => ProviderDataRequestConfirmation(),
           '/home': (context) => Home(),
-          '/scan': (context) => QrScan(),
+          '/navigation': (context) => Navigation(),
           '/profile': (context) => Profile(),
           '/provideraccess': (context) => ProviderAccess(),
-          '/signin': (context) => SignIn(),
           '/register': (context) => Register(),
-          '/navigation': (context) => Navigation(),
-          '/confirmation': (context) => ProviderDataRequestConfirmation(),
+          '/scan': (context) => QrScan(),
+          '/signin': (context) => SignIn(),
         },
       ),
     );

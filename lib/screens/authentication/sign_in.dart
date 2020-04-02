@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:idntfy_app/services/authentication.dart';
 import 'package:idntfy_app/shared/classes/loading.dart';
@@ -23,11 +24,6 @@ class _SignInState extends State<SignIn> {
     return loading
         ? Loading()
         : Scaffold(
-            appBar: AppBar(
-              elevation: 0.0,
-              title:
-                  Text('Sign in', style: Theme.of(context).textTheme.subtitle2),
-            ),
             body: Form(
               key: _formKey,
               child: SingleChildScrollView(
@@ -35,9 +31,9 @@ class _SignInState extends State<SignIn> {
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Column(
                     children: <Widget>[
-                      SizedBox(height: 70.0),
+                      SizedBox(height: 125.0),
                       Image.asset('images/logo_authentication.png'),
-                      SizedBox(height: 40.0),
+                      SizedBox(height: 50.0),
                       TextFormField(
                         decoration:
                             textInputDecoration.copyWith(labelText: 'Email'),
@@ -92,6 +88,29 @@ class _SignInState extends State<SignIn> {
                         ),
                       ),
                       SizedBox(height: 15.0),
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'New to IDntfy? ',
+                              style: Theme.of(context).textTheme.bodyText1,
+                            ),
+                            TextSpan(
+                              text: 'Register',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1
+                                  .copyWith(
+                                    color: Color(0xFF43D098),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () => Navigator.popAndPushNamed(
+                                    context, '/register'),
+                            )
+                          ],
+                        ),
+                      ),
                       Text(
                         error,
                         style: TextStyle(color: Colors.red),
