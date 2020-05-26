@@ -28,9 +28,12 @@ class ProviderRequest extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   SizedBox(height: 108.0),
-                  ClipOval(
-                    child: Image.asset('images/logos/${providerData.logo}',
-                        width: 42.5),
+                  CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Image(
+                      image: AssetImage('images/logos/${providerData.logo}'),
+                    ),
+                    radius: 35.0,
                   ),
                   SizedBox(height: 34.0),
                   Container(

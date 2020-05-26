@@ -33,11 +33,13 @@ class ProviderListTile extends StatelessWidget {
         providerAccess.data.length.toString() + ' datapoints shared',
         style: TextStyle(height: 2.0),
       ),
-      leading: ClipOval(
-        child: Image.asset(
-          'images/logos/${provider.logo}',
-          width: 50.0,
+      leading: CircleAvatar(
+        backgroundColor: Colors.white,
+        child: Image(
+          image: AssetImage('images/logos/${provider.logo}'),
+          fit: BoxFit.contain,
         ),
+        radius: 20.0,
       ),
       trailing: Icon(Icons.arrow_forward_ios),
     );
